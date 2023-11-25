@@ -6,14 +6,19 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
+import { Box } from "@mui/material";
+
 import Grid from "@mui/material/Grid";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import Typography from "@mui/material/Typography";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { styled } from "@mui/material/styles";
+// import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { useForm } from "react-hook-form";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -24,23 +29,25 @@ const Register = () => {
     formState: { errors },
     reset,
   } = useForm();
-  
-  const VisuallyHiddenInput = styled("input")({
-    clip: "rect(0 0 0 0)",
-    clipPath: "inset(50%)",
-    height: 1,
-    overflow: "hidden",
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    whiteSpace: "nowrap",
-    width: 1,
-  });
+  const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
+
   const onSubmit = async (data) => {
-    const imageFile ={ image: data.photo[0]};
-    
-    console.log(data);
-    reset();
+    // console.log(data);
+    const imageFile = { image: data.image[0] };
+    const res = await axiosPublic.post(image_hosting_api, imageFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+
+    console.log(res.data);
+
+    if (res.data.success) {
+      toast.success("success");
+      navigate("/");
+      reset();
+    }
   };
   return (
     <Grid container component="main" sx={{ height: "100vh" }}>
@@ -64,7 +71,7 @@ const Register = () => {
       <Grid item xs={12} sm={6} md={5} component={Paper} elevation={6} square>
         <Box
           sx={{
-            my: { md: 18, xs: 0 },
+            my: { md: 8, xs: 0 },
             mx: 4,
             display: "flex",
             flexDirection: "column",
@@ -128,21 +135,16 @@ const Register = () => {
                 Password is required <br />
               </span>
             )}
-            <Button
-              component="label"
-              type="file"
-              variant="contained"
-              startIcon={<CloudUploadIcon />}
-              sx={{ my: 2, textTransform: "capitalize" }}
-              {...register("photo", { required: true })}>
-              Upload Profile Photo
-              <VisuallyHiddenInput type="file" />
-            </Button>
-            {errors.photo && (
-              <span className="text-red-500 pl-2">
-                Photo is required <br />
+
+            <div className="pb-2">
+              <input {...register("image", { required: true })} type="file" />
+            </div>
+            {errors.image && (
+              <span className="text-red-500">
+                User image is required <br />
               </span>
             )}
+
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="I want to receive inspiration and updates via email."
@@ -154,6 +156,19 @@ const Register = () => {
               sx={{ mt: 2, mb: 2 }}>
               Sign Up
             </Button>
+            <ToastContainer
+              position="top-right"
+              autoClose={2000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+            />
+
             <Grid container>
               <Grid item>
                 <Link href="/login" variant="body2">

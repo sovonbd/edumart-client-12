@@ -6,11 +6,13 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
+import { Box } from "@mui/material";
+
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { useForm } from "react-hook-form";
+// import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const Login = () => {
   const {
@@ -119,6 +121,8 @@ const Login = () => {
                 </Link>
               </Grid>
             </Grid>
+            {/* <div className="divider">Or</div> */}
+            {/* <SocialLogin></SocialLogin> */}
           </Box>
         </Box>
       </Grid>

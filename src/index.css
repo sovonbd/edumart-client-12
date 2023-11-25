@@ -7,6 +7,7 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+<<<<<<< HEAD
 .page {
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
@@ -14,4 +15,19 @@ body {
 
 .page.transition {
   opacity: 0;
+=======
+input {
+  margin-top: 1rem;
+}
+
+input::file-selector-button {
+  font-weight: bold;
+  color: white;
+  padding: 0.4em 4em 0.4em 10px;
+  border: thin solid grey;
+  border-radius: 5px 0px 0px 5px;
+  background-color: #1c539f;
+  text-align: left;
+  cursor: pointer;
+>>>>>>> 265cc67 (updated the login and register page newly)
 }
