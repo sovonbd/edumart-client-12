@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home/Home";
 import AllClasses from "../Pages/AllClasses/AllClasses";
 import TeachOnEdumart from "../Pages/TeachOnEdumart/TeachOnEdumart";
 import Login from "../Pages/Login/Login";
+import Register from "../Pages/Register/Register";
 
 const Routes = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const Routes = createBrowserRouter([
       {
         path: "login",
         element: <Login></Login>,
+      },
+      {
+        path: "register",
+        element: <Register></Register>,
       },
     ],
   },

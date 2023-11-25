@@ -6,7 +6,11 @@ const MainLayout = () => {
   console.log(location);
   return (
     <div>
-      {location.pathname !== "/login" ? <DrawerAppBar></DrawerAppBar> : ""}
+      {location.pathname !== "/login" && location.pathname !== "/register" ? (
+        <DrawerAppBar></DrawerAppBar>
+      ) : (
+        ""
+      )}
       <Outlet></Outlet>
     </div>
   );

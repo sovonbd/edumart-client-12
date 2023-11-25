@@ -6,3 +6,12 @@
 body {
   font-family: "Roboto", sans-serif;
 }
+
+.page {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.page.transition {
+  opacity: 0;
+}
