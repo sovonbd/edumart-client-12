@@ -1,0 +1,15 @@
+import { Outlet, useLocation } from "react-router-dom";
+import DrawerAppBar from "../Pages/Home/Navbar/DrawerAppBar";
+
+const MainLayout = () => {
+  const location = useLocation();
+  console.log(location);
+  return (
+    <div>
+      {location.pathname !== "/login" ? <DrawerAppBar></DrawerAppBar> : ""}
+      <Outlet></Outlet>
+    </div>
+  );
+};
+
+export default MainLayout;
