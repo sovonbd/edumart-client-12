@@ -10,15 +10,18 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+  const onSubmit = async (data) => {
+    console.log(data);
+    reset();
   };
 
   return (
@@ -61,7 +64,7 @@ const Login = () => {
           <Box
             component="form"
             noValidate
-            onSubmit={handleSubmit}
+            onSubmit={handleSubmit(onSubmit)}
             sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -72,7 +75,11 @@ const Login = () => {
               name="email"
               autoComplete="email"
               autoFocus
+              {...register("email", { required: true })}
             />
+            {errors.email && (
+              <span className="text-red-500">Email is required</span>
+            )}
             <TextField
               margin="normal"
               required
@@ -82,7 +89,13 @@ const Login = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              {...register("password", { required: true })}
             />
+            {errors.password && (
+              <span className="text-red-500">
+                Password is required <br />
+              </span>
+            )}
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
@@ -91,7 +104,7 @@ const Login = () => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}>
+              sx={{ mt: 2, mb: 2 }}>
               Sign In
             </Button>
             <Grid container>
@@ -106,7 +119,6 @@ const Login = () => {
                 </Link>
               </Grid>
             </Grid>
-            {/* <Copyright sx={{ mt: 5 }} /> */}
           </Box>
         </Box>
       </Grid>
