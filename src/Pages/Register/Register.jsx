@@ -15,6 +15,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -27,27 +28,48 @@ const Register = () => {
   } = useForm();
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
+  const { createUser, updateUserProfile } = useAuth();
 
   const onSubmit = async (data) => {
     // console.log(data);
+    const name = data.name;
+    const email = data.email;
+    const password = data.password;
+
     const imageFile = { image: data.image[0] };
     const res = await axiosPublic.post(image_hosting_api, imageFile, {
       headers: {
         "content-type": "multipart/form-data",
       },
     });
-
     // console.log(res.data.data.display_url);
+    const photo = res.data.data.display_url;
 
-    if (res.data.success) {
-      Swal.fire({
-        icon: "success",
-        title: "Welcome !!!",
-        text: "User registered successfully",
-      });
-      navigate("/");
-      reset();
-    }
+    createUser(email, password).then((res) => {
+      // console.log(res.user);
+      updateUserProfile(name, photo)
+        .then(() => {
+          const userInfo = {
+            name: name,
+            email: email,
+            image: photo,
+          };
+
+          axiosPublic.post("/users", userInfo).then((res) => {
+            // console.log(res.data);
+            if (res.data.insertedId) {
+              Swal.fire({
+                icon: "success",
+                title: "Welcome !!!",
+                text: "User registered successfully",
+              });
+              navigate("/");
+            }
+          });
+        })
+        .catch((err) => console.log(err));
+    });
+    reset();
   };
   return (
     <Grid container component="main" sx={{ height: "100vh" }}>
@@ -71,7 +93,7 @@ const Register = () => {
       <Grid item xs={12} sm={6} md={5} component={Paper} elevation={6} square>
         <Box
           sx={{
-            my: { md: 8, xs: 0 },
+            my: { xl: 18, md: 5, xs: 0 },
             mx: 4,
             display: "flex",
             flexDirection: "column",

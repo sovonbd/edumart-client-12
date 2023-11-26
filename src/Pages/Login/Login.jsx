@@ -13,6 +13,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { useForm } from "react-hook-form";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const {
@@ -21,8 +24,31 @@ const Login = () => {
     formState: { errors },
     reset,
   } = useForm();
+
+  const { signIn } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
+
   const onSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
+    const email = data.email;
+    const password = data.password;
+
+    signIn(email, password).then((res) => {
+      console.log(res.user);
+
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Welcome back to Edumart !!!",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      navigate(from, { replace: true });
+    });
+
     reset();
   };
 

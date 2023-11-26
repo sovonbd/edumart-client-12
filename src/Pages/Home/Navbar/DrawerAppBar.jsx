@@ -25,6 +25,7 @@ const navItems = [
 ];
 
 const settings = [
+  { text: "Username", to: "" },
   { text: "Dashboard", to: "/dashboard/userHome" },
   { text: "Logout", to: "" },
 ];
@@ -167,7 +168,14 @@ function DrawerAppBar(props) {
                       onClose={handleCloseUserMenu}>
                       {settings.map((setting, idx) => (
                         <MenuItem key={idx} onClick={handleCloseUserMenu}>
-                          {setting.text === "Logout" ? (
+                          {setting.text === "Username" ? (
+                            <Box>
+                              <Typography textAlign="center">
+                                {user.displayName}
+                              </Typography>
+                              <hr className="h-[1px] w-[120px] bg-black" />{" "}
+                            </Box>
+                          ) : setting.text === "Logout" ? (
                             <Typography
                               textAlign="center"
                               onClick={handleLogout}>
