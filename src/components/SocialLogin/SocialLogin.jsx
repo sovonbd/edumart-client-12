@@ -1,13 +1,10 @@
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa6";
-
-// import useAuth from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
 
 const SocialLogin = () => {
   const { googleSignIn } = useAuth();
@@ -25,11 +22,19 @@ const SocialLogin = () => {
           image: res.user?.photoURL,
         };
         // console.log(userInfo);
-
         axiosPublic.post("/users", userInfo).then((res) => {
           console.log(res.data);
-          toast.success("Your registration was successful!!!");
-          navigate(from, { replace: true });
+          if (res.data.message) {
+            navigate(from, { replace: true });
+
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Welcome back to Edumart !!!",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+          }
         });
       })
       .catch((err) => console.log(err));
@@ -55,18 +60,7 @@ const SocialLogin = () => {
       </button>
       <FaFacebook className="  hover:text-blue-600 cursor-pointer" />
       <FaGithub className=" hover:text-black text-center cursor-pointer" />
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+      {/* <Toaster position="top-center" reverseOrder={false} /> */}
     </div>
   );
 };

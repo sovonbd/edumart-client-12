@@ -7,19 +7,14 @@ import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import { Box } from "@mui/material";
-
 import Grid from "@mui/material/Grid";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import Typography from "@mui/material/Typography";
-// import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import Swal from "sweetalert2";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -42,10 +37,14 @@ const Register = () => {
       },
     });
 
-    console.log(res.data);
+    // console.log(res.data.data.display_url);
 
     if (res.data.success) {
-      toast.success("Your registration was successful!!!");
+      Swal.fire({
+        icon: "success",
+        title: "Welcome !!!",
+        text: "User registered successfully",
+      });
       navigate("/");
       reset();
     }
@@ -157,18 +156,6 @@ const Register = () => {
               sx={{ mt: 2, mb: 2 }}>
               Sign Up
             </Button>
-            <ToastContainer
-              position="top-right"
-              autoClose={2000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="light"
-            />
 
             <Grid container>
               <Grid item>

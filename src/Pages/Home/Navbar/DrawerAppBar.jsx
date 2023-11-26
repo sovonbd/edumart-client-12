@@ -14,6 +14,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import { Avatar, Menu, MenuItem, Tooltip } from "@mui/material";
 
 const drawerWidth = 240;
 const navItems = [
@@ -22,12 +24,35 @@ const navItems = [
   { text: "Teach on Edumart", to: "/teachOnEdumart" },
 ];
 
+const settings = [
+  { text: "Dashboard", to: "/dashboard/userHome" },
+  { text: "Logout", to: "" },
+];
+
 function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { user, logOut } = useAuth();
+
+  console.log(user);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
+  };
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const handleLogout = () => {
+    logOut()
+      .then()
+      .catch((err) => console.log(err));
   };
 
   const drawer = (
@@ -95,7 +120,7 @@ function DrawerAppBar(props) {
               </Box>
             </Link>
           </Box>
-          <Box sx={{ display: "flex" }}>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
               {navItems.map((item, idx) => (
                 <Button
@@ -116,19 +141,66 @@ function DrawerAppBar(props) {
                 </Button>
               ))}
             </Box>
-            <Button variant="contained" sx={{ ml: 3 }}>
-              <Link to="/login">
-                <Typography
-                  color="primary"
-                  sx={{
-                    fontSize: "14px",
-                    textTransform: "capitalize",
-                    color: "white",
-                  }}>
-                  Login
-                </Typography>
-              </Link>
-            </Button>
+            <Box>
+              {user ? (
+                <Toolbar disableGutters sx={{ ml: 3 }}>
+                  <Box sx={{ flexGrow: 0 }}>
+                    <Tooltip title="Open settings">
+                      <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                        <Avatar alt="" src={user?.photoURL} />
+                      </IconButton>
+                    </Tooltip>
+                    <Menu
+                      sx={{ mt: "48px" }}
+                      id="menu-appbar"
+                      anchorEl={anchorElUser}
+                      anchorOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                      keepMounted
+                      transformOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                      open={Boolean(anchorElUser)}
+                      onClose={handleCloseUserMenu}>
+                      {settings.map((setting, idx) => (
+                        <MenuItem key={idx} onClick={handleCloseUserMenu}>
+                          {setting.text === "Logout" ? (
+                            <Typography
+                              textAlign="center"
+                              onClick={handleLogout}>
+                              {setting.text}
+                            </Typography>
+                          ) : (
+                            <Link to={setting.to}>
+                              <Typography textAlign="center">
+                                {setting.text}
+                              </Typography>
+                            </Link>
+                          )}
+                        </MenuItem>
+                      ))}
+                    </Menu>
+                  </Box>
+                </Toolbar>
+              ) : (
+                <Button variant="contained" sx={{ ml: 3 }}>
+                  <Link to="/login">
+                    <Typography
+                      color="primary"
+                      sx={{
+                        fontSize: "14px",
+                        textTransform: "capitalize",
+                        color: "white",
+                      }}>
+                      Login
+                    </Typography>
+                  </Link>
+                </Button>
+              )}
+            </Box>
           </Box>
         </Toolbar>
       </AppBar>
