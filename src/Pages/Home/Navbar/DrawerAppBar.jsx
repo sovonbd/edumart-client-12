@@ -167,7 +167,22 @@ function DrawerAppBar(props) {
                       open={Boolean(anchorElUser)}
                       onClose={handleCloseUserMenu}>
                       {settings.map((setting, idx) => (
-                        <MenuItem key={idx} onClick={handleCloseUserMenu}>
+                        <MenuItem
+                          key={idx}
+                          onClick={
+                            setting.text === "Username"
+                              ? null
+                              : handleCloseUserMenu
+                          }
+                          sx={{
+                            "&:hover": {
+                              backgroundColor:
+                                setting.text === "Username"
+                                  ? "transparent"
+                                  : "",
+                            },
+                          }}
+                          disableRipple={setting.text === "Username"}>
                           {setting.text === "Username" ? (
                             <Box>
                               <Typography textAlign="center">
