@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
-import MainLayout from "../MainLayout/MainLayout";
-import Home from "../Pages/Home/Home/Home";
-import AllClasses from "../Pages/AllClasses/AllClasses";
-import TeachOnEdumart from "../Pages/TeachOnEdumart/TeachOnEdumart";
-import Login from "../Pages/Login/Login";
-import Register from "../Pages/Register/Register";
+import MainLayout from "../layout/MainLayout";
+import Home from "../pages/Home/Home/Home";
+import AllClasses from "../pages/AllClasses/AllClasses";
+import TeachOnEdumart from "../pages/TeachOnEdumart/TeachOnEdumart";
+import Login from "../pages/Login/Login";
+import Register from "../pages/Register/Register";
+
 
 const Routes = createBrowserRouter([
   {

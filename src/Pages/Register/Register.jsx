@@ -19,6 +19,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useNavigate } from "react-router-dom";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -44,7 +45,7 @@ const Register = () => {
     console.log(res.data);
 
     if (res.data.success) {
-      toast.success("success");
+      toast.success("Your registration was successful!!!");
       navigate("/");
       reset();
     }
@@ -177,6 +178,8 @@ const Register = () => {
               </Grid>
             </Grid>
           </Box>
+          <div className="divider">Or login with</div>
+          <SocialLogin></SocialLogin>
         </Box>
       </Grid>
     </Grid>

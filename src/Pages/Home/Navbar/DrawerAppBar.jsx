@@ -42,8 +42,8 @@ function DrawerAppBar(props) {
       <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}></Box>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+        {navItems.map((item, idx) => (
+          <ListItem key={idx} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
               <Link to={item.to}>
                 <Typography
@@ -97,9 +97,9 @@ function DrawerAppBar(props) {
           </Box>
           <Box sx={{ display: "flex" }}>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
-              {navItems.map((item) => (
+              {navItems.map((item, idx) => (
                 <Button
-                  key={item.text}
+                  key={idx}
                   variant={item.text === "Teach on Edumart" ? "outlined" : ""}
                   size="large"
                   sx={{ ml: 1 }}>

@@ -21,3 +21,11 @@ input::file-selector-button {
   text-align: left;
   cursor: pointer;
 }
+
+.icon-container {
+  display: inline-block;
+}
+
+.icon-container:hover {
+  cursor: pointer;
+}

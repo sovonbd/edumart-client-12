@@ -12,7 +12,7 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { useForm } from "react-hook-form";
-// import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const Login = () => {
   const {
@@ -110,20 +110,20 @@ const Login = () => {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
+              <Grid item xs={12} md>
                 <Link href="#" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
-              <Grid item>
+              <Grid item xs={12} md sx={{ textAlign: { md: "right" } }}>
                 <Link href="/register" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
-            {/* <div className="divider">Or</div> */}
-            {/* <SocialLogin></SocialLogin> */}
           </Box>
+          <div className="divider">Or login with</div>
+          <SocialLogin></SocialLogin>
         </Box>
       </Grid>
     </Grid>

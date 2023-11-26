@@ -1,9 +1,10 @@
 import { Outlet, useLocation } from "react-router-dom";
-import DrawerAppBar from "../Pages/Home/Navbar/DrawerAppBar";
+import DrawerAppBar from "../pages/Home/Navbar/DrawerAppBar";
+
 
 const MainLayout = () => {
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   return (
     <div>
       {location.pathname !== "/login" && location.pathname !== "/register" ? (
