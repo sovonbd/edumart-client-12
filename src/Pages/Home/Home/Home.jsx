@@ -1,10 +1,9 @@
-
-import DrawerAppBar from "../Navbar/DrawerAppBar";
+import Banner from "../Banner/Banner";
 
 const Home = () => {
   return (
-    <div>
-      
+    <div className="lg:w-4/5 mx-auto pt-10">
+      <Banner></Banner>
     </div>
   );
 };

@@ -24,18 +24,15 @@ const SocialLogin = () => {
         // console.log(userInfo);
         axiosPublic.post("/users", userInfo).then((res) => {
           console.log(res.data);
-          if (res.data.message) {
-            navigate(from, { replace: true });
-
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: "Welcome back to Edumart !!!",
-              showConfirmButton: false,
-              timer: 2000,
-            });
-          }
         });
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Welcome back to Edumart !!!",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        navigate(from, { replace: true });
       })
       .catch((err) => console.log(err));
   };
@@ -58,9 +55,14 @@ const SocialLogin = () => {
         onMouseLeave={handleMouseLeave}>
         {isHovered ? <FcGoogle /> : <FaGoogle />}
       </button>
-      <FaFacebook className="  hover:text-blue-600 cursor-pointer" />
-      <FaGithub className=" hover:text-black text-center cursor-pointer" />
-      {/* <Toaster position="top-center" reverseOrder={false} /> */}
+      <FaFacebook
+        onClick={handleGoogleSignIn}
+        className="  hover:text-blue-600 cursor-pointer"
+      />
+      <FaGithub
+        onClick={handleGoogleSignIn}
+        className=" hover:text-black text-center cursor-pointer"
+      />
     </div>
   );
 };

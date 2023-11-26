@@ -1,7 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
 import DrawerAppBar from "../pages/Home/Navbar/DrawerAppBar";
 
-
 const MainLayout = () => {
   const location = useLocation();
   // console.log(location);
