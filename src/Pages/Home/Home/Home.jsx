@@ -1,9 +1,11 @@
 import Banner from "../Banner/Banner";
+import Sponsors from "../Sponsors/Sponsors";
 
 const Home = () => {
   return (
-    <div className="lg:w-4/5 mx-auto pt-10">
+    <div className="">
       <Banner></Banner>
+      <Sponsors></Sponsors>
     </div>
   );
 };

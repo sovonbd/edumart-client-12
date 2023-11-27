@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
-    <div className="flex gap-4 items-center px-3 md:px-8 text-center md:text-left">
+    <div className="flex gap-4 items-center px-3 md:px-8 text-center md:text-left lg:w-4/5 mx-auto my-10">
       <div className="flex-1 space-y-4">
         <h1 className="text-2xl text-center md:text-left lg:text-7xl font-bold">
           Learn without limits
@@ -15,9 +15,7 @@ const Banner = () => {
         </p>
         <div>
           <Link to="/register">
-            <Button variant="contained" sx={{ textTransform: "capitalize" }}>
-              Join for Free
-            </Button>
+            <Button variant="contained">Join for Free</Button>
           </Link>
           <Link to="/allClasses">
             <Button
@@ -26,7 +24,6 @@ const Banner = () => {
                 ml: 2,
                 border: 1,
                 px: { xs: 1, sm: 2 },
-                textTransform: "capitalize",
               }}>
               Try Edumart Courses
             </Button>
