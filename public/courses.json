@@ -1,0 +1,112 @@
+[
+  {
+    "courseId": 1,
+    "title": "Python for Data Science and Machine Learning Bootcamp",
+    "instructor": "Jose Portilla",
+    "ratings": 4.8,
+    "numOfRatingProviders": 1200,
+    "price": 99.99,
+    "numOfTotalEnrollment": 25000,
+    "description": "Master Python and machine learning in this extensive bootcamp. Learn data science workflows, including data wrangling, visualization, statistical analysis, and machine learning implementations using Python. Gain practical insights into data manipulation, cleaning, and exploratory data analysis. Develop regression, classification, clustering, and deep learning models. Explore libraries like Pandas, NumPy, Matplotlib, and Scikit-learn. Delve into neural networks, decision trees, and ensemble methods. Also, explore natural language processing (NLP) and computer vision applications. Acquire skills to work on real-world projects and make data-driven decisions.",
+    "image": "https://i.ibb.co/CvLDZGS/image.png"
+  },
+  {
+    "courseId": 2,
+    "title": "Web Development Bootcamp",
+    "instructor": "Colt Steele",
+    "ratings": 4.9,
+    "numOfRatingProviders": 1500,
+    "price": 129.99,
+    "numOfTotalEnrollment": 30000,
+    "description": "Become a proficient full-stack web developer through this comprehensive bootcamp. Cover HTML, CSS, JavaScript, Node.js, React, and more. Learn to build responsive and interactive web applications. Gain insights into backend development, databases, server-side technologies, and real-world project work. Explore version control with Git, deploying web applications, and industry best practices. By the course end, you'll possess a strong foundation in web development, ready to kickstart your career.",
+    "image": "https://i.ibb.co/ftXqgvz/image.png"
+  },
+  {
+    "courseId": 3,
+    "title": "Machine Learning A-Z™: Hands-On Python & R In Data Science",
+    "instructor": "Kirill Eremenko",
+    "ratings": 4.7,
+    "numOfRatingProviders": 1800,
+    "price": 149.99,
+    "numOfTotalEnrollment": 20000,
+    "description": "Comprehensive machine learning course using Python & R. Implement models, clustering, natural language processing, neural networks, and practical applications. Dive into supervised and unsupervised learning, regression, classification, and more. Explore the data science workflow, model evaluation, and deployment.",
+    "image": "https://i.ibb.co/T4SxprF/image.png"
+  },
+  {
+    "courseId": 4,
+    "title": "iOS 15 & Swift 5 - The Complete iOS App Development Bootcamp",
+    "instructor": "Angela Yu",
+    "ratings": 4.9,
+    "numOfRatingProviders": 2200,
+    "price": 149.99,
+    "numOfTotalEnrollment": 18000,
+    "description": "Learn iOS app development from scratch with Swift 5 and Xcode. Dive into UIKit, create advanced iOS applications, and launch your app development journey. Gain hands-on experience and build various iOS applications. Learn iOS app development from scratch with Swift 5 and Xcode. Dive into UIKit, create advanced iOS applications, and launch your app development journey. Gain hands-on experience and build various iOS applications.",
+    "image": "https://i.ibb.co/mGzkLfN/image.png"
+  },
+  {
+    "courseId": 5,
+    "title": "Java Programming Masterclass for Software Developers",
+    "instructor": "Tim Buchalka",
+    "ratings": 4.7,
+    "numOfRatingProviders": 1600,
+    "price": 109.99,
+    "numOfTotalEnrollment": 22000,
+    "description": "Gain expertise in Java programming with a comprehensive masterclass. Cover Java basics, OOP, data structures, algorithms, and software development. Learn through practical examples and projects. Gain expertise in Java programming with a comprehensive masterclass. Cover Java basics, OOP, data structures, algorithms, and software development. Learn through practical examples and projects.",
+    "image": "https://i.ibb.co/3vTf7Bk/image.png"
+  },
+  {
+    "courseId": 6,
+    "title": "The Complete Cyber Security Course: Hackers Exposed!",
+    "instructor": "Nathan House",
+    "ratings": 4.6,
+    "numOfRatingProviders": 1400,
+    "price": 139.99,
+    "numOfTotalEnrollment": 19000,
+    "description": "Master cybersecurity essentials including ethical hacking, penetration testing, network security, and encryption. Gain practical knowledge to defend against cyber threats. Master cybersecurity essentials including ethical hacking, penetration testing, network security, and encryption. Gain practical knowledge to defend against cyber threats.",
+    "image": "https://i.ibb.co/GJNB7yQ/image.png"
+  },
+  {
+    "courseId": 7,
+    "title": "AWS Certified Solutions Architect - Associate 2023",
+    "instructor": "Stephane Maarek",
+    "ratings": 4.8,
+    "numOfRatingProviders": 2000,
+    "price": 159.99,
+    "numOfTotalEnrollment": 21000,
+    "description": "Prepare for AWS certification by mastering AWS services, architecture, security, and best practices. Gain the skills required to become an AWS Certified Solutions Architect. Prepare for AWS certification by mastering AWS services, architecture, security, and best practices. Gain the skills required to become an AWS Certified Solutions Architect.",
+    "image": "https://i.ibb.co/yRjJHGT/image.png"
+  },
+  {
+    "courseId": 8,
+    "title": "Data Science and Machine Learning Bootcamp with R",
+    "instructor": "Jose Portilla",
+    "ratings": 4.5,
+    "numOfRatingProviders": 1300,
+    "price": 119.99,
+    "numOfTotalEnrollment": 17000,
+    "description": "Delve into data science and machine learning using R. Master R programming, statistical analysis, and predictive modeling. Gain practical experience through hands-on projects. Delve into data science and machine learning using R. Master R programming, statistical analysis, and predictive modeling. Gain practical experience through hands-on projects.",
+    "image": "https://i.ibb.co/7r7zQ0D/image.png"
+  },
+  {
+    "courseId": 9,
+    "title": "React - The Complete Guide (incl Hooks, React Router, Redux)",
+    "instructor": "Maximilian Schwarzmüller",
+    "ratings": 4.9,
+    "numOfRatingProviders": 1900,
+    "price": 129.99,
+    "numOfTotalEnrollment": 26000,
+    "description": "Become an expert in React and related technologies. Cover React, React Router, Redux, and build scalable web applications. Gain hands-on experience in React development. Become an expert in React and related technologies. Cover React, React Router, Redux, and build scalable web applications. Gain hands-on experience in React development.",
+    "image": "https://i.ibb.co/28fHSfk/image.png"
+  },
+  {
+    "courseId": 10,
+    "title": "Deep Learning Specialization",
+    "instructor": "Andrew Ng",
+    "ratings": 4.9,
+    "numOfRatingProviders": 2500,
+    "price": 199.99,
+    "numOfTotalEnrollment": 15000,
+    "description": "Master deep learning techniques. Learn neural networks, CNNs, RNNs, and their practical applications. Gain expertise in deep learning through real-world projects. Master deep learning techniques. Learn neural networks, CNNs, RNNs, and their practical applications. Gain expertise in deep learning through real-world projects.",
+    "image": "https://i.ibb.co/HG44LLS/image.png"
+  }
+]

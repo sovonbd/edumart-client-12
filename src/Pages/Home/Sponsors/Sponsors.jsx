@@ -27,7 +27,7 @@ const Sponsors = () => {
       </h3>
       <div>
         <Marquee pauseOnHover={true}>
-          <div className="flex lg:gap-11 pt-5 lg:pt-10">
+          <div className="flex lg:gap-12 pt-5 lg:pt-10">
             {sponsors.map((sponsor) => (
               <img
                 key={sponsor._id}
