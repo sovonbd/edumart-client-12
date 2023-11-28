@@ -74,7 +74,7 @@ const Login = () => {
       <Grid item xs={12} sm={6} md={5} component={Paper} elevation={6} square>
         <Box
           sx={{
-            my: { md: 18, xs: 0 },
+            my: { md: 14, xs: 0 },
             mx: 4,
             display: "flex",
             flexDirection: "column",
