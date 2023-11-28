@@ -3,63 +3,63 @@
     "id": 1,
     "name": "Python for Beginners",
     "title": "Mastering Python Programming",
-    "image": "python_image.jpg",
+    "image": "https://i.ibb.co/CmF4N0X/pngwing-com.png",
     "description": "Python for Beginners is an excellent course for those starting in programming. The lectures are well-structured, covering basics to advanced concepts. The instructor's explanations are clear and concise. Exercises and projects reinforce learning. Overall, a comprehensive and enjoyable learning experience."
   },
   {
     "id": 2,
     "name": "Web Development Bootcamp",
     "title": "The Complete Web Developer Course",
-    "image": "web_dev_image.jpg",
+    "image": "https://i.ibb.co/CmF4N0X/pngwing-com.png",
     "description": "This bootcamp is a game-changer for aspiring web developers. It covers HTML, CSS, JavaScript, and more. The projects are practical and build a strong portfolio. The instructor's teaching style is engaging, making complex concepts easy to understand."
   },
   {
     "id": 3,
     "name": "Data Science Fundamentals",
     "title": "Data Science and Machine Learning",
-    "image": "data_science_image.jpg",
+    "image": "https://i.ibb.co/CmF4N0X/pngwing-com.png",
     "description": "Data Science and Machine Learning course offers a solid foundation. The curriculum is extensive, covering statistics, data analysis, and machine learning algorithms. The hands-on projects provide valuable practical experience. Great for beginners and those looking to expand their skills."
   },
   {
     "id": 4,
     "name": "Cybersecurity Essentials",
     "title": "Ethical Hacking and Cybersecurity",
-    "image": "cybersecurity_image.jpg",
+    "image": "https://i.ibb.co/CmF4N0X/pngwing-com.png",
     "description": "An insightful course on cybersecurity and ethical hacking. Covers various attack vectors and defense strategies. Practical labs and simulations make concepts tangible. The instructor's expertise shines through, making complex topics accessible."
   },
   {
     "id": 5,
     "name": "Mobile App Development",
     "title": "Creating Android and iOS Apps",
-    "image": "app_dev_image.jpg",
+    "image": "https://i.ibb.co/CmF4N0X/pngwing-com.png",
     "description": "A comprehensive course on mobile app development. Covers app creation for Android and iOS using various languages and frameworks. Practical projects and real-world examples enhance learning. The instructor's guidance is invaluable."
   },
   {
     "id": 6,
     "name": "Cloud Computing Basics",
     "title": "Mastering Cloud Technologies",
-    "image": "cloud_computing_image.jpg",
+    "image": "https://i.ibb.co/CmF4N0X/pngwing-com.png",
     "description": "An essential course for understanding cloud computing. Covers AWS, Azure, and Google Cloud platforms extensively. Hands-on labs and case studies provide practical insights. The instructor's expertise and clear explanations make complex topics easier to grasp."
   },
   {
     "id": 7,
     "name": "AI and Machine Learning",
     "title": "Advanced AI: Neural Networks",
-    "image": "ai_ml_image.jpg",
+    "image": "https://i.ibb.co/CmF4N0X/pngwing-com.png",
     "description": "A top-notch course diving into advanced AI and neural networks. Explores deep learning, neural network architectures, and applications. The assignments challenge and reinforce learning. The instructor's knowledge and teaching style are impressive."
   },
   {
     "id": 8,
     "name": "Software Engineering Principles",
     "title": "Effective Software Development",
-    "image": "software_eng_image.jpg",
+    "image": "https://i.ibb.co/CmF4N0X/pngwing-com.png",
     "description": "An insightful course covering software engineering principles and best practices. Topics include Agile methodologies, design patterns, and software testing. Practical exercises and real-world examples make concepts practical and applicable."
   },
   {
     "id": 9,
     "name": "Blockchain Fundamentals",
     "title": "Understanding Blockchain Technology",
-    "image": "blockchain_image.jpg",
+    "image": "https://i.ibb.co/CmF4N0X/pngwing-com.png",
     "description": "A comprehensive course on blockchain technology. Covers blockchain fundamentals, smart contracts, and cryptocurrency. Practical exercises and case studies deepen understanding. The instructor's expertise in the field is evident throughout the course."
   }
 ]
