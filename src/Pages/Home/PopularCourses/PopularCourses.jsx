@@ -5,6 +5,8 @@ import Loading from "../../../components/Loading/Loading";
 import PopularCoursesCard from "./PopularCoursesCard";
 import Glider from "react-glider";
 import "glider-js/glider.min.css";
+import { FaLongArrowAltRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const PopularCourses = () => {
   // const axiosPublic = useAxiosPublic();
@@ -33,7 +35,7 @@ const PopularCourses = () => {
   return (
     <div className="px-6 my-20">
       <h3 className="text-2xl lg:text-4xl font-medium text-center md:text-left">
-        Start learing with our popular courses
+        Start learning with our popular courses
       </h3>
       <p className="text-center md:text-left pt-4 md:pt-0">
         Explore our newest programs, focused on delivering in-demand skills.
@@ -80,6 +82,14 @@ const PopularCourses = () => {
               course={course}></PopularCoursesCard>
           ))}
         </Glider>
+      </div>
+      <div className="flex justify-center">
+        <Link to="/allClasses">
+          <button className="flex items-center gap-1 font-bold text-[#1c539f] hover:underline">
+            Explore More Courses{" "}
+            <FaLongArrowAltRight className="text-lg mt-1"></FaLongArrowAltRight>
+          </button>
+        </Link>
       </div>
     </div>
   );

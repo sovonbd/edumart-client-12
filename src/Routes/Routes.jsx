@@ -5,7 +5,7 @@ import AllClasses from "../pages/AllClasses/AllClasses";
 import TeachOnEdumart from "../pages/TeachOnEdumart/TeachOnEdumart";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
-
+import CoursePage from "../pages/CoursePage/CoursePage";
 
 const Routes = createBrowserRouter([
   {
@@ -19,6 +19,10 @@ const Routes = createBrowserRouter([
       {
         path: "allClasses",
         element: <AllClasses></AllClasses>,
+      },
+      {
+        path: "allClasses/:id",
+        element: <CoursePage></CoursePage>,
       },
       {
         path: "teachOnEdumart",

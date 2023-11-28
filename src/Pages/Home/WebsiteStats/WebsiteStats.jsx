@@ -6,8 +6,8 @@ import StatAnimation from "../../../hooks/useStatAnimation";
 const WebsiteStats = () => {
   const num1 = 4850;
   const num2 = 2850;
-  const num3 = 850;
-  const num4 = 350;
+  const num3 = 7850;
+  const num4 = 1350;
 
   return (
     <div>

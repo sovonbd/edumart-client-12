@@ -138,7 +138,7 @@ const Footer = () => {
                     <a
                       className="text-gray-700 transition hover:text-gray-700/75"
                       href="/">
-                      Web Development
+                      Affiliate
                     </a>
                   </li>
 
@@ -146,7 +146,7 @@ const Footer = () => {
                     <a
                       className="text-gray-700 transition hover:text-gray-700/75"
                       href="/">
-                      Web Design
+                      Investors
                     </a>
                   </li>
 
@@ -217,7 +217,7 @@ const Footer = () => {
                       href="/">
                       <FaRegEnvelope className="text-lg"></FaRegEnvelope>
 
-                      <span className=" text-gray-700">john@doe.com</span>
+                      <span className=" text-gray-700">sovonsdp@gmail.com</span>
                     </a>
                   </li>
 
@@ -235,7 +235,7 @@ const Footer = () => {
                     <FaMapMarkerAlt className="text-lg" />
 
                     <address className="-mt-0.5  not-italic text-gray-700">
-                      213 Lane, London, United Kingdom
+                      Winnipeg, Manitoba, Canada
                     </address>
                   </li>
                 </ul>
@@ -243,9 +243,9 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="mt-12 border-t border-gray-100 pt-6">
+          <div className="mt-12 border-t border-gray-100 py-6">
             <div className="text-center sm:flex sm:justify-between sm:text-left">
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-500 space-x-2">
                 <span className="block sm:inline">All rights reserved.</span>
 
                 <a

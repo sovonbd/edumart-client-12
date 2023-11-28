@@ -61,7 +61,7 @@ const Reviews = () => {
       <div className="w-full lg:w-2/3 mx-auto">
         <div className="">
           <h3 className="text-2xl lg:text-4xl font-medium text-center">
-            What our students say
+            What our learners say
           </h3>
           <p className="text-center md:w-2/3 mx-auto p-4 md:pt-0">
             80% of learners report career benefits, such as new skills,
@@ -71,7 +71,6 @@ const Reviews = () => {
         <div className="glider-custom-container p-5">
           <Glider
             className="grid gap-6 glider-container"
-            
             hasDots
             slidesToShow={1}
             slidesToScroll={1}
