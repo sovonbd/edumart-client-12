@@ -1,4 +1,5 @@
 import Banner from "../Banner/Banner";
+import BecomeInstructor from "../BecomeInstructor/BecomeInstructor";
 import PopularCourses from "../PopularCourses/PopularCourses";
 import Reviews from "../Reviews/Reviews";
 import Sponsors from "../Sponsors/Sponsors";
@@ -12,6 +13,7 @@ const Home = () => {
       <Sponsors></Sponsors>
       <Reviews></Reviews>
       <WebsiteStats></WebsiteStats>
+      <BecomeInstructor></BecomeInstructor>
     </div>
   );
 };

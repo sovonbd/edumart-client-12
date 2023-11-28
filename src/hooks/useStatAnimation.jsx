@@ -1,6 +1,5 @@
 import { useInView } from "react-intersection-observer";
 import AnimatedNumber from "animated-number-react";
-import React from "react";
 
 const StatAnimation = ({ num }) => {
   const [ref, inView] = useInView({
