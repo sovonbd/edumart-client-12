@@ -16,8 +16,8 @@ const BecomeInstructor = () => {
           Instructors from around the world teach thousands of learners on
           Edumart. We provide the tools and skills to teach what you love.
         </p>
-        <Button variant="contained" sx={{ width: { xs: 1, md: 'auto' } }}>
-          Start teaching Now
+        <Button variant="contained" sx={{ width: { xs: 1, md: "auto" } }}>
+          Start teaching today
         </Button>
       </div>
     </div>

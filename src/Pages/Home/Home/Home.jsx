@@ -1,5 +1,6 @@
 import Banner from "../Banner/Banner";
 import BecomeInstructor from "../BecomeInstructor/BecomeInstructor";
+import EdumartBusiness from "../EdumartBusiness/EdumartBusiness";
 import PopularCourses from "../PopularCourses/PopularCourses";
 import Reviews from "../Reviews/Reviews";
 import Sponsors from "../Sponsors/Sponsors";
@@ -14,6 +15,7 @@ const Home = () => {
       <Reviews></Reviews>
       <WebsiteStats></WebsiteStats>
       <BecomeInstructor></BecomeInstructor>
+      <EdumartBusiness></EdumartBusiness>
     </div>
   );
 };
