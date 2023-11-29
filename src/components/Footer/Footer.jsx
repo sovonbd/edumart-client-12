@@ -58,11 +58,7 @@ const Footer = () => {
                 </li>
 
                 <li>
-                  <Link
-                    href="/"
-                    rel="noreferrer"
-                    target="_blank"
-                    className="text-teal-700 transition hover:text-teal-700/75">
+                  <Link href="/" rel="noreferrer" target="_blank">
                     <span className="sr-only">Twitter</span>
                     <FaTwitter className="text-gray-500 hover:text-blue-600 cursor-pointer text-2xl"></FaTwitter>
                   </Link>

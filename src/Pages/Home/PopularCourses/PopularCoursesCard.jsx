@@ -16,7 +16,7 @@ const PopularCoursesCard = ({ course }) => {
   } = course;
 
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
 
   return (
     <div className="space-y-2 shadow-md rounded-md p-3 hover:scale-105 hover:shadow-lg border-[1px] hover:duration-300 mx-2">

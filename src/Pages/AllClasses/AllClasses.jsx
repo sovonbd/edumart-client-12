@@ -15,7 +15,7 @@ const AllClasses = () => {
 
   // Define MAX and INTERVAL constants
   const MAX = quotes.length - 1; // or the maximum number of slides
-  const INTERVAL = 2000; // or the interval in milliseconds
+  const INTERVAL = 4000; // or the interval in milliseconds
   const callbackRef = useCallback(
     (glider) => {
       if (glider) {
