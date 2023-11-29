@@ -26,7 +26,7 @@ const navItems = [
 
 const settings = [
   { text: "Username", to: "" },
-  { text: "Dashboard", to: "/dashboard/userHome" },
+  { text: "Dashboard", to: "/dashboard" },
   { text: "Logout", to: "" },
 ];
 

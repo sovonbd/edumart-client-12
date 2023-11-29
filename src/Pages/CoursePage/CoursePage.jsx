@@ -121,7 +121,7 @@ const CoursePage = () => {
               <div className="flex justify-between">
                 <span className="title-font font-bold text-2xl ">${price}</span>
                 <div>
-                  <Link to="">
+                  <Link to="/dashboard/payment">
                     <Button variant="contained" sx={{ width: "100%" }}>
                       Pay Now
                     </Button>

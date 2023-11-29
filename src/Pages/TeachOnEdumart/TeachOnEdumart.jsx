@@ -43,7 +43,7 @@ const TeachOnEdumart = () => {
       experience: data.experience,
       title: data.title,
       category: data.category,
-      image: user.photoURL,
+      instructorImage: user.photoURL,
     };
 
     await mutate(item);

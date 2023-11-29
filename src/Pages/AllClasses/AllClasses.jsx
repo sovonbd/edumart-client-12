@@ -108,7 +108,7 @@ const AllClasses = () => {
       <div>
         <div className="px-2 md:px-6 my-20">
           <h3 className="text-2xl lg:text-4xl font-medium text-center md:text-left">
-            Start learning with our popular courses
+            Browser the courses
           </h3>
           <p className="text-center md:text-left pt-4 md:pt-0">
             Explore our newest programs, focused on delivering in-demand skills.
