@@ -3,11 +3,20 @@ import axios from "axios";
 import Loading from "../../../components/Loading/Loading";
 import Glider from "react-glider";
 import "glider-js/glider.min.css";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const Reviews = () => {
-  const [reviews, setReviews] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const intervalRef = useRef(null);
+  const axiosPublic = useAxiosPublic();
+
+  const { data: reviews = [], isLoading } = useQuery({
+    queryKey: ["reviews"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/reviews");
+      return res.data;
+    },
+  });
 
   // Define MAX and INTERVAL constants
   const MAX = reviews.length - 1; // or the maximum number of slides
@@ -39,21 +48,10 @@ const Reviews = () => {
     };
   }, [intervalRef]);
 
-  useEffect(() => {
-    axios("reviews.json")
-      .then((res) => {
-        setReviews(res.data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
-
-  console.log(reviews.length);
+  // component loading
 
   if (isLoading) {
-    return <Loading />;
+    return <Loading></Loading>;
   }
 
   return (

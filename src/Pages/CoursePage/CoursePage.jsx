@@ -1,36 +1,46 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { Button, Rating } from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   FaCode,
   FaDownload,
   FaFacebook,
   FaInstagram,
-  FaMobile,
   FaMobileAlt,
-  FaTv,
   FaTwitter,
 } from "react-icons/fa";
 import { LuMonitorPlay } from "react-icons/lu";
 import { RiArticleLine } from "react-icons/ri";
 import { FaTrophy } from "react-icons/fa6";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useState } from "react";
 
 const CoursePage = () => {
   const { id } = useParams();
-  console.log(typeof id);
-  const { data: courses = [], isLoading } = useQuery({
-    queryKey: ["courses"],
-    queryFn: async () => {
-      const res = await axios("/courses.json");
+  const axiosSecure = useAxiosSecure();
+  const [loading, setLoading] = useState(true);
+  console.log(id);
+
+  const { mutate } = useMutation({
+    mutationFn: async (item) => {
+      const res = await axiosSecure.post("/payments", item);
       return res.data;
     },
   });
 
-  if (isLoading) {
+  const { data: courses = [], isLoading } = useQuery({
+    queryKey: ["courses"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/courses/${id}`);
+      setLoading(false);
+      return res.data;
+    },
+  });
+
+  if (loading || isLoading) {
     return <Loading></Loading>;
   }
 
@@ -40,10 +50,8 @@ const CoursePage = () => {
     return <div>No courses found</div>;
   }
 
-  const findCourse = courses.find((course) => course.courseId === parseInt(id));
-
-  console.log(findCourse);
   const {
+    _id,
     courseId,
     title,
     instructor,
@@ -54,7 +62,23 @@ const CoursePage = () => {
     price,
     image,
     description,
-  } = findCourse;
+  } = courses;
+
+  const handlePay = () => {
+    const items = {
+      courseId: _id,
+      title,
+      instructor,
+      instructorImage,
+      ratings,
+      numOfRatingProviders,
+      numOfTotalEnrollment,
+      price,
+      image,
+      description,
+    };
+    mutate(items);
+  };
 
   return (
     <div className="md:px-6 lg:px-11 lg:w-4/5 mx-auto my-20">
@@ -83,7 +107,7 @@ const CoursePage = () => {
                     />
                   </div>
                   <small>
-                    ({numOfRatingProviders.toLocaleString()}+ reviews)
+                    ({numOfRatingProviders?.toLocaleString()}+ reviews)
                   </small>
                 </p>
                 <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 gap-3">
@@ -103,7 +127,7 @@ const CoursePage = () => {
               </div>
               <p className="text-sm mt-2 md:mt-0 mb-4">
                 <span className="font-bold">
-                  {numOfTotalEnrollment.toLocaleString()}
+                  {numOfTotalEnrollment?.toLocaleString()}
                 </span>{" "}
                 already enrolled
               </p>
@@ -121,8 +145,11 @@ const CoursePage = () => {
               <div className="flex justify-between">
                 <span className="title-font font-bold text-2xl ">${price}</span>
                 <div>
-                  <Link to="/dashboard/payment">
-                    <Button variant="contained" sx={{ width: "100%" }}>
+                  <Link to={`/payment/${_id}`}>
+                    <Button
+                      variant="contained"
+                      onClick={handlePay}
+                      sx={{ width: "100%" }}>
                       Pay Now
                     </Button>
                   </Link>

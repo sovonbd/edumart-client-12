@@ -4,10 +4,12 @@ import Footer from "../components/Footer/Footer";
 
 const MainLayout = () => {
   const location = useLocation();
-  // console.log(location);
+  console.log(location);
   return (
     <div>
-      {location.pathname !== "/login" && location.pathname !== "/register" ? (
+      {location.pathname !== "/login" &&
+      location.pathname !== "/register" &&
+      !location.pathname.startsWith("/payment/") ? (
         <div>
           <DrawerAppBar></DrawerAppBar>
           <Outlet></Outlet>

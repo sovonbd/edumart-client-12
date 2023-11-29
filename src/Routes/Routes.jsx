@@ -40,6 +40,10 @@ const Routes = createBrowserRouter([
         path: "register",
         element: <Register></Register>,
       },
+      {
+        path: "payment/:id",
+        element: <Payment></Payment>,
+      },
     ],
   },
   {
@@ -55,10 +59,7 @@ const Routes = createBrowserRouter([
         path: "myProfile",
         element: <MyProfile></MyProfile>,
       },
-      {
-        path: "payment",
-        element: <Payment></Payment>,
-      },
+      
     ],
   },
 ]);

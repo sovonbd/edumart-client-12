@@ -1,30 +1,30 @@
-import { useEffect, useState } from "react";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
-import axios from "axios";
 import Loading from "../../../components/Loading/Loading";
 import PopularCoursesCard from "./PopularCoursesCard";
 import Glider from "react-glider";
 import "glider-js/glider.min.css";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 const PopularCourses = () => {
-  // const axiosPublic = useAxiosPublic();
-  const [courses, setCourses] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const axiosPublic = useAxiosPublic();
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    axios("courses.json")
-      .then((res) => {
-        setCourses(res.data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
+  const { data: courses = [] } = useQuery({
+    queryKey: ["courses"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/courses");
+      setLoading(false);
+      return res.data;
+    },
+  });
+  console.log(courses);
 
-  if (isLoading) {
+  // component loading
+
+  if (loading) {
     return <Loading></Loading>;
   }
 

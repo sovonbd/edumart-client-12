@@ -6,16 +6,27 @@ import Glider from "react-glider";
 import "glider-js/glider.min.css";
 import { RiDoubleQuotesL } from "react-icons/ri";
 import PopularCoursesCard from "../Home/PopularCourses/PopularCoursesCard";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const AllClasses = () => {
-  const [quotes, setQuotes] = useState([]);
-  const [courses, setCourses] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const intervalRef = useRef(null);
+  const axiosPublic = useAxiosPublic();
+  const [loading, setLoading] = useState(true);
+
+  // quotes related
+  const { data: quotes = [] } = useQuery({
+    queryKey: ["quotes"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/quotes");
+      setLoading(false);
+      return res.data;
+    },
+  });
 
   // Define MAX and INTERVAL constants
-  const MAX = quotes.length - 1; // or the maximum number of slides
-  const INTERVAL = 4000; // or the interval in milliseconds
+  const MAX = quotes.length - 1; // maximum number of slides
+  const INTERVAL = 4000; // interval in milliseconds
   const callbackRef = useCallback(
     (glider) => {
       if (glider) {
@@ -35,8 +46,6 @@ const AllClasses = () => {
     [MAX]
   );
 
-  // quotes related
-
   useEffect(() => {
     return () => {
       if (intervalRef.current) {
@@ -45,33 +54,21 @@ const AllClasses = () => {
     };
   }, [intervalRef]);
 
-  useEffect(() => {
-    axios("quotes.json")
-      .then((res) => {
-        setQuotes(res.data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
-
   // courses related
 
-  useEffect(() => {
-    axios("courses.json")
-      .then((res) => {
-        setCourses(res.data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
+  const { data: courses = [], isLoading } = useQuery({
+    queryKey: ["courses"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/courses");
+      setLoading(false);
+      return res.data;
+    },
+  });
+  console.log(courses);
 
   // component loading
 
-  if (isLoading) {
+  if (loading || isLoading) {
     return <Loading></Loading>;
   }
 
@@ -114,9 +111,9 @@ const AllClasses = () => {
             Explore our newest programs, focused on delivering in-demand skills.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 lg:gap-x-6 gap-y-10 p-5">
-            {courses.map((course) => (
+            {courses?.map((course) => (
               <PopularCoursesCard
-                key={course.courseId}
+                key={course._id}
                 course={course}></PopularCoursesCard>
             ))}
           </div>
