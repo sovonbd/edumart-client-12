@@ -1,13 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { useParams } from "react-router-dom";
-import {
-  CardElement,
-  PaymentElement,
-  useElements,
-  useStripe,
-} from "@stripe/react-stripe-js";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { Button } from "@mui/material";
 import useAuth from "../../../../hooks/useAuth";
 
@@ -21,22 +16,46 @@ const CheckoutForm = () => {
   const [transactionId, setTransactionId] = useState("");
 
   const { id } = useParams();
+  // console.log(id);
 
-  const { data: price } = useQuery({
+  const { data = [] } = useQuery({
     queryKey: ["price"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/payments/${id}`);
-      return res.data.price;
+      const res = await axiosSecure.get(`/courses/${id}`);
+      console.log(res.data);
+      return res.data;
     },
   });
-  console.log(typeof price);
+
+  // console.log(data);
+  const {
+    _id,
+    title,
+    instructor,
+    instructorImage,
+    ratings,
+    numOfRatingProviders,
+    numOfTotalEnrollment,
+    price,
+    image,
+    description,
+  } = data;
+
+  const { mutate } = useMutation({
+    mutationFn: async (item) => {
+      const res = await axiosSecure.post("/payments", item);
+      return res.data;
+    },
+  });
 
   useEffect(() => {
-    axiosSecure.post("/create-payment-intent", { price: price }).then((res) => {
-      console.log(res.data.clientSecret);
-      setClientSecret(res.data.clientSecret);
-    });
-  }, [price, axiosSecure]);
+    axiosSecure
+      .post("/create-payment-intent", { price: data.price })
+      .then((res) => {
+        console.log(res.data.clientSecret);
+        setClientSecret(res.data.clientSecret);
+      });
+  }, [data.price, axiosSecure]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -77,16 +96,32 @@ const CheckoutForm = () => {
       console.log("payment Intent", paymentIntent);
       if (paymentIntent.status === "succeeded")
         setTransactionId(paymentIntent.id);
+
+      const items = {
+        courseId: _id,
+        title,
+        instructor,
+        instructorImage,
+        ratings,
+        numOfRatingProviders,
+        numOfTotalEnrollment,
+        price,
+        image,
+        description,
+        learnersName: user.displayName,
+        learnerEmail: user.email,
+        transactionId: paymentIntent.id,
+      };
+      mutate(items);
     }
   };
-  console.log(price);
 
   return (
     <div>
       <div>
         <h3 className="lg:text-4xl font-bold">Payment Details</h3>
         <p>Enter your card information below for this payment</p>
-        <p>Price: ${price}</p>
+        <p>Price: ${data.price}</p>
       </div>
       <form onSubmit={handleSubmit} className="w-1/2">
         <CardElement
@@ -113,7 +148,9 @@ const CheckoutForm = () => {
           Pay
         </Button>
         <p className="text-red-600">{error}</p>
-        <p className="text-green-600">Your transaction id: {transactionId}</p>
+        {transactionId && (
+          <p className="text-green-600">Your transaction id: {transactionId}</p>
+        )}
       </form>
     </div>
   );

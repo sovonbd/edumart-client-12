@@ -172,7 +172,7 @@ const Dashboard = (props) => {
           {drawer}
         </Drawer>
       </Box>
-      <div className="p-16">
+      <div className="p-4 lg:p-16">
         <Outlet></Outlet>
       </div>
     </Box>

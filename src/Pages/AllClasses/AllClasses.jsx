@@ -14,6 +14,18 @@ const AllClasses = () => {
   const axiosPublic = useAxiosPublic();
   const [loading, setLoading] = useState(true);
 
+  // courses related
+
+  const { data: courses = [], isLoading } = useQuery({
+    queryKey: ["courses"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/courses");
+      setLoading(false);
+      return res.data;
+    },
+  });
+  console.log(courses);
+  
   // quotes related
   const { data: quotes = [] } = useQuery({
     queryKey: ["quotes"],
@@ -53,18 +65,6 @@ const AllClasses = () => {
       }
     };
   }, [intervalRef]);
-
-  // courses related
-
-  const { data: courses = [], isLoading } = useQuery({
-    queryKey: ["courses"],
-    queryFn: async () => {
-      const res = await axiosPublic.get("/courses");
-      setLoading(false);
-      return res.data;
-    },
-  });
-  console.log(courses);
 
   // component loading
 

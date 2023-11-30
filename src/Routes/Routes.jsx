@@ -10,6 +10,7 @@ import Dashboard from "../layout/Dashboard";
 import MyEnrollCourses from "../pages/Dashboard/Learners/MyEnrollCourses/MyEnrollCourses";
 import MyProfile from "../pages/Dashboard/Learners/MyProfile/MyProfile";
 import Payment from "../pages/Dashboard/Learners/Payment/Payment";
+import MyEnrollCourseDetails from "../pages/Dashboard/Learners/MyEnrollCourseDetails/MyEnrollCourseDetails";
 
 const Routes = createBrowserRouter([
   {
@@ -56,10 +57,13 @@ const Routes = createBrowserRouter([
         element: <MyEnrollCourses></MyEnrollCourses>,
       },
       {
+        path: "myEnrollCourses/:id",
+        element: <MyEnrollCourseDetails></MyEnrollCourseDetails>,
+      },
+      {
         path: "myProfile",
         element: <MyProfile></MyProfile>,
       },
-      
     ],
   },
 ]);

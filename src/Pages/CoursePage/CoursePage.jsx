@@ -24,12 +24,7 @@ const CoursePage = () => {
   const [loading, setLoading] = useState(true);
   console.log(id);
 
-  const { mutate } = useMutation({
-    mutationFn: async (item) => {
-      const res = await axiosSecure.post("/payments", item);
-      return res.data;
-    },
-  });
+
 
   const { data: courses = [], isLoading } = useQuery({
     queryKey: ["courses"],
@@ -63,22 +58,6 @@ const CoursePage = () => {
     image,
     description,
   } = courses;
-
-  const handlePay = () => {
-    const items = {
-      courseId: _id,
-      title,
-      instructor,
-      instructorImage,
-      ratings,
-      numOfRatingProviders,
-      numOfTotalEnrollment,
-      price,
-      image,
-      description,
-    };
-    mutate(items);
-  };
 
   return (
     <div className="md:px-6 lg:px-11 lg:w-4/5 mx-auto my-20">
@@ -146,10 +125,7 @@ const CoursePage = () => {
                 <span className="title-font font-bold text-2xl ">${price}</span>
                 <div>
                   <Link to={`/payment/${_id}`}>
-                    <Button
-                      variant="contained"
-                      onClick={handlePay}
-                      sx={{ width: "100%" }}>
+                    <Button variant="contained" sx={{ width: "100%" }}>
                       Pay Now
                     </Button>
                   </Link>
