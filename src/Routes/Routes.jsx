@@ -11,6 +11,11 @@ import MyEnrollCourses from "../pages/Dashboard/Learners/MyEnrollCourses/MyEnrol
 import MyProfile from "../pages/Dashboard/Learners/MyProfile/MyProfile";
 import Payment from "../pages/Dashboard/Learners/Payment/Payment";
 import MyEnrollCourseDetails from "../pages/Dashboard/Learners/MyEnrollCourseDetails/MyEnrollCourseDetails";
+import PrivateRoutes from "./PrivateRoutes";
+import AdminRoutes from "./AdminRoutes";
+import TeacherRequest from "../pages/Dashboard/Admin/TeacherRequest/TeacherRequest";
+import Users from "../pages/Dashboard/Admin/Users/Users";
+import DAllClasses from "../pages/Dashboard/Admin/DAllClasses/DAllClasses";
 
 const Routes = createBrowserRouter([
   {
@@ -27,11 +32,19 @@ const Routes = createBrowserRouter([
       },
       {
         path: "allClasses/:id",
-        element: <CoursePage></CoursePage>,
+        element: (
+          <PrivateRoutes>
+            <CoursePage></CoursePage>
+          </PrivateRoutes>
+        ),
       },
       {
         path: "teachOnEdumart",
-        element: <TeachOnEdumart></TeachOnEdumart>,
+        element: (
+          <PrivateRoutes>
+            <TeachOnEdumart></TeachOnEdumart>
+          </PrivateRoutes>
+        ),
       },
       {
         path: "login",
@@ -43,14 +56,47 @@ const Routes = createBrowserRouter([
       },
       {
         path: "payment/:id",
-        element: <Payment></Payment>,
+        element: (
+          <PrivateRoutes>
+            <Payment></Payment>
+          </PrivateRoutes>
+        ),
       },
     ],
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoutes>
+        <Dashboard></Dashboard>
+      </PrivateRoutes>
+    ),
     children: [
+      // admin routes
+      {
+        path: "teacherRequest",
+        element: (
+          <AdminRoutes>
+            <TeacherRequest></TeacherRequest>
+          </AdminRoutes>
+        ),
+      },
+      {
+        path: "users",
+        element: (
+          <AdminRoutes>
+            <Users></Users>
+          </AdminRoutes>
+        ),
+      },
+      {
+        path: "allClasses",
+        element: (
+          <AdminRoutes>
+            <DAllClasses></DAllClasses>
+          </AdminRoutes>
+        ),
+      },
       // learners routes
       {
         path: "myEnrollCourses",

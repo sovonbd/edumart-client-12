@@ -16,7 +16,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import HouseIcon from "@mui/icons-material/House";
@@ -24,6 +24,10 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import useAuth from "../hooks/useAuth";
 import useSwal from "../hooks/useSwal";
+import useAdmin from "../hooks/useAdmin";
+import EmailIcon from "@mui/icons-material/Email";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import BookmarksIcon from "@mui/icons-material/Bookmarks";
 
 const drawerWidth = 240;
 
@@ -31,6 +35,9 @@ const Dashboard = (props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const { user, logOut } = useAuth();
+  const [isAdmin] = useAdmin();
+  const navigate = useNavigate();
+  console.log(isAdmin);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -40,6 +47,7 @@ const Dashboard = (props) => {
     logOut()
       .then(() => {
         useSwal("logout completed");
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };
@@ -55,28 +63,61 @@ const Dashboard = (props) => {
       </Typography>
       <Divider />
       <List>
-        {[
-          {
-            info: "My Enroll courses",
-            to: "/dashboard/myEnrollCourses",
-            icon: <LibraryBooksIcon />,
-          },
-          {
-            info: "My Profile",
-            to: "/dashboard/myProfile",
-            icon: <AccountBoxIcon />,
-          },
-        ].map((text, index) => (
-          <Link key={index} to={text.to}>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>{text.icon}</ListItemIcon>
-                <ListItemText primary={text.info} />
-              </ListItemButton>
-            </ListItem>
-          </Link>
-        ))}
+        {isAdmin
+          ? [
+              {
+                info: "Teacher Request",
+                to: "/dashboard/teacherRequest",
+                icon: <EmailIcon />,
+              },
+              {
+                info: "Users",
+                to: "/dashboard/users",
+                icon: <PeopleAltIcon />,
+              },
+              {
+                info: "All Classes",
+                to: "/dashboard/allClasses",
+                icon: <BookmarksIcon />,
+              },
+              {
+                info: "My Profile",
+                to: "/dashboard/myProfile",
+                icon: <AccountBoxIcon />,
+              },
+            ].map((text, index) => (
+              <Link key={index} to={text.to}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>{text.icon}</ListItemIcon>
+                    <ListItemText primary={text.info} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            ))
+          : [
+              {
+                info: "My Enroll courses",
+                to: "/dashboard/myEnrollCourses",
+                icon: <LibraryBooksIcon />,
+              },
+              {
+                info: "My Profile",
+                to: "/dashboard/myProfile",
+                icon: <AccountBoxIcon />,
+              },
+            ].map((text, index) => (
+              <Link key={index} to={text.to}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>{text.icon}</ListItemIcon>
+                    <ListItemText primary={text.info} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            ))}
       </List>
+
       <Divider />
       <List>
         {[
@@ -172,7 +213,7 @@ const Dashboard = (props) => {
           {drawer}
         </Drawer>
       </Box>
-      <div className="p-4 lg:p-16">
+      <div className="px-4 py-16 md:px-16">
         <Outlet></Outlet>
       </div>
     </Box>

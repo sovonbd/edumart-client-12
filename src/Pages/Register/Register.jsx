@@ -33,6 +33,7 @@ const Register = () => {
   const onSubmit = async (data) => {
     // console.log(data);
     const name = data.name;
+    const number = data.number;
     const email = data.email;
     const password = data.password;
 
@@ -51,6 +52,7 @@ const Register = () => {
         .then(() => {
           const userInfo = {
             name: name,
+            phoneNumber : number,
             email: email,
             image: photo,
           };
@@ -93,7 +95,7 @@ const Register = () => {
       <Grid item xs={12} sm={6} md={5} component={Paper} elevation={6} square>
         <Box
           sx={{
-            my: { xl: 18, md: 5, xs: 0 },
+            my: { xl: 18, xs: 0 },
             mx: 4,
             display: "flex",
             flexDirection: "column",
@@ -123,6 +125,20 @@ const Register = () => {
               autoComplete="name"
               autoFocus
               {...register("name", { required: true })}
+            />
+            {errors.name && (
+              <span className="text-red-500">Name is required</span>
+            )}
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="number"
+              label="Phone number"
+              name="number"
+              autoComplete="number"
+              autoFocus
+              {...register("number", { required: true })}
             />
             {errors.name && (
               <span className="text-red-500">Name is required</span>
