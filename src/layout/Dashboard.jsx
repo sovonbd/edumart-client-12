@@ -46,7 +46,7 @@ const Dashboard = (props) => {
   const handleLogout = () => {
     logOut()
       .then(() => {
-        useSwal("logout completed");
+        useSwal("logout completed", "success");
         navigate("/");
       })
       .catch((err) => console.log(err));

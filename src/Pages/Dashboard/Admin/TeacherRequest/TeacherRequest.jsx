@@ -23,10 +23,14 @@ const TeacherRequest = () => {
   });
   // console.log(instructors);
 
+  const itemAccept = { status: "Accepted" };
   const { mutate } = useMutation({
     mutationFn: async (instructorName) => {
       const res1 = await axiosSecure.patch(`/users/${instructorName}`);
-      const res2 = await axiosSecure.patch(`/instructors/${instructorName}`);
+      const res2 = await axiosSecure.patch(
+        `/instructors/${instructorName}`,
+        itemAccept
+      );
       // console.log(res.data.result);
       // refetch();
       console.log({ res1, res2 });
@@ -34,8 +38,27 @@ const TeacherRequest = () => {
     },
     onSuccess: (data) => {
       const { res1, res2 } = data;
-      if (res1.data.result.modifiedCount > 0 && res2.data.modifiedCount > 0) {
-        useSwal(`${res1.data.instructorName} is teacher now!!!`);
+      if (res2.data.result.modifiedCount > 0 && res1.data.modifiedCount > 0) {
+        useSwal(`${res2.data.name} is teacher now!!!`, "success");
+      }
+      setActionButton(true);
+      refetch();
+    },
+  });
+
+  const itemReject = { status: "Rejected" };
+  const { mutate: mutateRefuse } = useMutation({
+    mutationFn: async (instructorName) => {
+      const res1 = await axiosSecure.patch(
+        `/instructors/${instructorName}`,
+        itemReject
+      );
+      console.log(res1.data);
+      return res1.data;
+    },
+    onSuccess: (data) => {
+      if (data.result.modifiedCount > 0) {
+        useSwal(`${data.name} request is declined!!!`, "error");
       }
       setActionButton(true);
       refetch();
@@ -50,6 +73,11 @@ const TeacherRequest = () => {
     // console.log("clicked", instructor);
     mutate(instructor);
   };
+
+  const handleRefuse = (instructor) => {
+    mutateRefuse(instructor);
+  };
+
   return (
     <div>
       <div className="text-center lg:pt-0 text-2xl md:text-4xl font-bold">
@@ -96,22 +124,31 @@ const TeacherRequest = () => {
                       <button
                         onClick={() => handleAccept(instructor.instructor)}
                         className={
-                          instructor.status === "Accepted"
+                          instructor.status === "Accepted" ||
+                          instructor.status === "Rejected"
                             ? "bg-gray-300 text-white rounded-full p-1"
                             : "border-2 border-green-500 text-[#1c539f] rounded-full p-1 hover:bg-green-500 hover:text-white hover:border-none"
                         }
-                        disabled={instructor.status === "Accepted"}>
+                        disabled={
+                          instructor.status === "Accepted" ||
+                          instructor.status === "Rejected"
+                        }>
                         <FaCheck></FaCheck>
                       </button>
                     </Tooltip>
                     <Tooltip title="Reject" placement="top">
                       <button
+                        onClick={() => handleRefuse(instructor.instructor)}
                         className={
-                          instructor.status === "Accepted"
+                          instructor.status === "Accepted" ||
+                          instructor.status === "Rejected"
                             ? "bg-gray-300 text-white rounded-full p-1"
                             : "border-2 border-red-400 text-red-500 rounded-full p-1 hover:bg-red-500 hover:text-white hover:border-none"
                         }
-                        disabled={instructor.status === "Accepted"}>
+                        disabled={
+                          instructor.status === "Accepted" ||
+                          instructor.status === "Rejected"
+                        }>
                         <RxCross2></RxCross2>
                       </button>
                     </Tooltip>

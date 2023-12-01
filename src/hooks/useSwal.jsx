@@ -1,9 +1,9 @@
 import Swal from "sweetalert2";
 
-const useSwal = (message) => {
+const useSwal = (message, statusIcon) => {
   return Swal.fire({
     position: "center",
-    icon: "success",
+    icon: statusIcon,
     title: message,
     showConfirmButton: false,
     timer: 2000,
