@@ -16,23 +16,30 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import Loading from "../../components/Loading/Loading";
+import { Link } from "react-router-dom";
+import useSwal from "../../hooks/useSwal";
 
 const TeachOnEdumart = () => {
   const { user } = useAuth();
   const [reqSent, setReqSent] = useState(false);
   const axiosSecure = useAxiosSecure();
 
-  const { isLoading: queryLoading } = useQuery({
-    queryKey: ["userName"],
+  const { data: userData = [], isLoading: queryLoading } = useQuery({
+    queryKey: ["userData"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/instructors/${user.displayName}`);
+      // if (res.data.message === true) {
+      //   setReqSent(true);
+      // }
       console.log(res.data);
-      if (res.data.message === true) {
-        setReqSent(true);
-      }
       return res.data;
-    }
+    },
+    enabled: !!user.displayName,
   });
+
+  console.log(userData);
+  console.log(userData?.status);
+  // console.log(userData.);
 
   const {
     register,
@@ -43,11 +50,12 @@ const TeachOnEdumart = () => {
   const { mutate, isLoading: mutationLoading } = useMutation({
     mutationFn: async (item) => {
       const res = await axiosSecure.post("/instructors", item);
+      console.log(res.data);
       return res.data;
     },
     onSuccess: (data) => {
       if (data.insertedId) {
-        // Handle success (e.g., show a success message)
+        useSwal("Your request sent !!!", "success");
       }
     },
   });
@@ -89,7 +97,19 @@ const TeachOnEdumart = () => {
           </Button>
         </div>
       </div>
-      {!reqSent ? (
+
+      {userData?.status === "pending" ? (
+        <div className="flex justify-center items-center h-[60vh]">
+          Request Sent
+        </div>
+      ) : userData?.status === "Accepted" ? (
+        <div className="justify-center items-center h-[60vh] flex flex-col space-y-3">
+          <p>You are a Teacher in Edumart</p>
+          <Link to="/dashboard">
+            <Button variant="contained">Go to Your Dashboard</Button>
+          </Link>
+        </div>
+      ) : (
         <div>
           <Grid component="main">
             <CssBaseline />
@@ -222,16 +242,14 @@ const TeachOnEdumart = () => {
                     fullWidth
                     variant="contained"
                     sx={{ mt: 2, mb: 2 }}>
-                    Submit to review
+                    {userData.status === "Rejected"
+                      ? "Request Another"
+                      : "Submit for Review"}
                   </Button>
                 </Box>
               </Box>
             </Grid>
           </Grid>
-        </div>
-      ) : (
-        <div className="flex justify-center items-center h-[60vh]">
-          Request Sent
         </div>
       )}
     </div>

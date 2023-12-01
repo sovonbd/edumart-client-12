@@ -23,10 +23,14 @@ const TeacherRequest = () => {
   });
   // console.log(instructors);
 
+  const ItemUser = { role: "Teacher" };
   const itemAccept = { status: "Accepted" };
   const { mutate } = useMutation({
     mutationFn: async (instructorName) => {
-      const res1 = await axiosSecure.patch(`/users/${instructorName}`);
+      const res1 = await axiosSecure.patch(
+        `/users/${instructorName}`,
+        ItemUser
+      );
       const res2 = await axiosSecure.patch(
         `/instructors/${instructorName}`,
         itemAccept
@@ -80,7 +84,7 @@ const TeacherRequest = () => {
 
   return (
     <div>
-      <div className="text-center lg:pt-0 text-2xl md:text-4xl font-bold">
+      <div className="text-center lg:pt-0 text-2xl md:text-4xl font-bold md:pb-5">
         Teacher Request
       </div>
       <div>
@@ -119,7 +123,7 @@ const TeacherRequest = () => {
                   <td>{instructor.title}</td>
                   <td>{instructor.category}</td>
                   <td>{instructor.status}</td>
-                  <td className="space-x-2">
+                  <td className="space-y-2 lg:space-y-0 lg:space-x-2">
                     <Tooltip title="Accept" placement="top">
                       <button
                         onClick={() => handleAccept(instructor.instructor)}
@@ -127,7 +131,7 @@ const TeacherRequest = () => {
                           instructor.status === "Accepted" ||
                           instructor.status === "Rejected"
                             ? "bg-gray-300 text-white rounded-full p-1"
-                            : "border-2 border-green-500 text-[#1c539f] rounded-full p-1 hover:bg-green-500 hover:text-white hover:border-none"
+                            : "border-2 border-green-500 text-green-500 rounded-full p-1 hover:bg-green-500 hover:text-white hover:border-none"
                         }
                         disabled={
                           instructor.status === "Accepted" ||

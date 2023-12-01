@@ -37,7 +37,7 @@ const Dashboard = (props) => {
   const { user, logOut } = useAuth();
   const [isAdmin] = useAdmin();
   const navigate = useNavigate();
-  console.log(isAdmin);
+  // console.log(isAdmin);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
