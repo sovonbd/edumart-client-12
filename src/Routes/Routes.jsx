@@ -20,6 +20,7 @@ import ClassProgress from "../pages/Dashboard/Admin/ClassProgress/ClassProgress"
 import MyCourses from "../pages/Dashboard/Instructor/MyCourses/MyCourses";
 import AddClass from "../pages/Dashboard/Instructor/AddClass/AddClass";
 import MyCoursePage from "../pages/Dashboard/Instructor/MyCoursePage/MyCoursePage";
+import UpdateCoursePage from "../pages/Dashboard/Instructor/UpdateCoursePage/UpdateCoursePage";
 
 const Routes = createBrowserRouter([
   {
@@ -122,6 +123,10 @@ const Routes = createBrowserRouter([
       {
         path: "myCourses/:id",
         element: <MyCoursePage></MyCoursePage>,
+      },
+      {
+        path: "update/:id",
+        element: <UpdateCoursePage></UpdateCoursePage>,
       },
 
       // learners routes
