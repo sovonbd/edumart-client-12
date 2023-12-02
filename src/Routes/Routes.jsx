@@ -19,6 +19,7 @@ import DAllClasses from "../pages/Dashboard/Admin/DAllClasses/DAllClasses";
 import ClassProgress from "../pages/Dashboard/Admin/ClassProgress/ClassProgress";
 import MyCourses from "../pages/Dashboard/Instructor/MyCourses/MyCourses";
 import AddClass from "../pages/Dashboard/Instructor/AddClass/AddClass";
+import MyCoursePage from "../pages/Dashboard/Instructor/MyCoursePage/MyCoursePage";
 
 const Routes = createBrowserRouter([
   {
@@ -117,6 +118,10 @@ const Routes = createBrowserRouter([
       {
         path: "myCourses",
         element: <MyCourses></MyCourses>,
+      },
+      {
+        path: "myCourses/:id",
+        element: <MyCoursePage></MyCoursePage>,
       },
 
       // learners routes

@@ -12,10 +12,9 @@ import { useMutation } from "@tanstack/react-query";
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useSwal from "../../../../hooks/useSwal";
-import axios from "axios";
 
-const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+// const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+// const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddClass = () => {
   const { user } = useAuth();
@@ -42,16 +41,16 @@ const AddClass = () => {
   });
 
   const onSubmit = async (data) => {
-    const imageFile = { image: data.image[0] };
+    // const imageFile = { image: data.image[0] };
 
-    // console.log(data);
-    const res = await axios.post(image_hosting_api, imageFile, {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
-    });
+    // // console.log(data);
+    // const res = await axios.post(image_hosting_api, imageFile, {
+    //   headers: {
+    //     "content-type": "multipart/form-data",
+    //   },
+    // });
 
-    // // console.log(res.data.data.display_url);
+    // console.log(res.data.data);
 
     const course = {
       title: data.title,
@@ -59,11 +58,12 @@ const AddClass = () => {
       email: user?.email,
       price: parseInt(data.price),
       description: data.description,
-      image: res.data.data.display_url,
+      image: data.image,
+      instructorImage: user?.photoURL,
       status: "Pending",
     };
 
-    console.log();
+    // console.log(course);
     mutate(course);
   };
 
@@ -162,14 +162,26 @@ const AddClass = () => {
                   {...register("description", { required: true })}
                 />
                 {errors.description && (
-                  <span className="text-red-500">Description is required</span>
+                  <span className="text-red-500">Image Url is required</span>
                 )}
-                <div className="pb-2">
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="image"
+                  label="Image Url"
+                  name="image"
+                  autoComplete="image"
+                  autoFocus
+                  {...register("image", { required: true })}
+                />
+
+                {/* <div className="pb-2">
                   <input
                     {...register("image", { required: true })}
                     type="file"
                   />
-                </div>
+                </div> */}
                 {errors.image && (
                   <span className="text-red-500">
                     User image is required <br />
