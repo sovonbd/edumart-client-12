@@ -47,7 +47,6 @@ const CoursePage = () => {
 
   const {
     _id,
-    courseId,
     title,
     instructor,
     instructorImage,

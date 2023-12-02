@@ -48,14 +48,14 @@ const PopularCoursesCard = ({ course }) => {
               size="small"
               readOnly
             />
-            <small>({numOfRatingProviders.toLocaleString()}+ reviews)</small>
+            <small>({numOfRatingProviders?.toLocaleString()}+ reviews)</small>
           </p>
 
           {location.pathname === "/allClasses" ? (
             <div className="space-y-2">
               <p className="text-sm">
                 <span className="font-bold">
-                  {numOfTotalEnrollment.toLocaleString()}
+                  {numOfTotalEnrollment?.toLocaleString()}
                 </span>{" "}
                 already enrolled
               </p>

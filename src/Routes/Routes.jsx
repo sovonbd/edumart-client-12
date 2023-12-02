@@ -16,6 +16,9 @@ import AdminRoutes from "./AdminRoutes";
 import TeacherRequest from "../pages/Dashboard/Admin/TeacherRequest/TeacherRequest";
 import Users from "../pages/Dashboard/Admin/Users/Users";
 import DAllClasses from "../pages/Dashboard/Admin/DAllClasses/DAllClasses";
+import ClassProgress from "../pages/Dashboard/Admin/ClassProgress/ClassProgress";
+import MyCourses from "../pages/Dashboard/Instructor/MyCourses/MyCourses";
+import AddClass from "../pages/Dashboard/Instructor/AddClass/AddClass";
 
 const Routes = createBrowserRouter([
   {
@@ -97,6 +100,25 @@ const Routes = createBrowserRouter([
           </AdminRoutes>
         ),
       },
+      {
+        path: "class/:id",
+        element: (
+          <AdminRoutes>
+            <ClassProgress></ClassProgress>
+          </AdminRoutes>
+        ),
+      },
+
+      // instructors routes
+      {
+        path: "addClass",
+        element: <AddClass></AddClass>,
+      },
+      {
+        path: "myCourses",
+        element: <MyCourses></MyCourses>,
+      },
+
       // learners routes
       {
         path: "myEnrollCourses",

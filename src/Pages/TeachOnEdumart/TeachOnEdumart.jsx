@@ -21,7 +21,6 @@ import useSwal from "../../hooks/useSwal";
 
 const TeachOnEdumart = () => {
   const { user } = useAuth();
-  const [reqSent, setReqSent] = useState(false);
   const axiosSecure = useAxiosSecure();
 
   const { data: userData = [], isLoading: queryLoading } = useQuery({

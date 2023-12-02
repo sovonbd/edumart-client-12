@@ -6,13 +6,11 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -27,7 +25,14 @@ import useSwal from "../hooks/useSwal";
 import useAdmin from "../hooks/useAdmin";
 import EmailIcon from "@mui/icons-material/Email";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import BookmarksIcon from "@mui/icons-material/Bookmarks";
+import BookmarksIcon from "@mui/icons-material/Bookmarks"; // Corrected import statement
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import Loading from "../components/Loading/Loading";
+import CollectionsBookmarkIcon from "@mui/icons-material/CollectionsBookmark";
+import EditCalendarIcon from "@mui/icons-material/EditCalendar";
+
+// Rest of your component code...
 
 const drawerWidth = 240;
 
@@ -37,11 +42,26 @@ const Dashboard = (props) => {
   const { user, logOut } = useAuth();
   const [isAdmin] = useAdmin();
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
   // console.log(isAdmin);
+
+  const { data: teacher, isLoading } = useQuery({
+    queryKey: ["teacher"],
+    queryFn: async () => {
+      const res = axiosSecure.get(`/users/${user.email}`);
+      return (await res).data;
+    },
+  });
+
+  console.log(teacher?.role);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
 
   const handleLogout = () => {
     logOut()
@@ -79,6 +99,33 @@ const Dashboard = (props) => {
                 info: "All Classes",
                 to: "/dashboard/allClasses",
                 icon: <BookmarksIcon />,
+              },
+              {
+                info: "My Profile",
+                to: "/dashboard/myProfile",
+                icon: <AccountBoxIcon />,
+              },
+            ].map((text, index) => (
+              <Link key={index} to={text.to}>
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>{text.icon}</ListItemIcon>
+                    <ListItemText primary={text.info} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            ))
+          : teacher?.role === "Teacher"
+          ? [
+              {
+                info: "Add Course",
+                to: "/dashboard/addClass",
+                icon: <EditCalendarIcon />,
+              },
+              {
+                info: "My Courses",
+                to: "/dashboard/myCourses",
+                icon: <CollectionsBookmarkIcon />,
               },
               {
                 info: "My Profile",
