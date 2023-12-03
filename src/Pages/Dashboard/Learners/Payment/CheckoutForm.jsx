@@ -1,10 +1,11 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { Button } from "@mui/material";
 import useAuth from "../../../../hooks/useAuth";
+import useSwal from "../../../../hooks/useSwal";
 
 const CheckoutForm = () => {
   const [clientSecret, setClientSecret] = useState("");
@@ -44,7 +45,18 @@ const CheckoutForm = () => {
   const { mutate } = useMutation({
     mutationFn: async (item) => {
       const res = await axiosSecure.post("/payments", item);
-      return res.data;
+      const res1 = await axiosSecure.patch(`/courses/${id}`, {
+        numOfTotalEnrollment: 1,
+      });
+      // console.log(res.data);
+      return [res.data, res1.data];
+    },
+    onSuccess: (data) => {
+      const [res] = data;
+      // console.log(res);
+      if (res.insertedId) {
+        useSwal("Wow!! Payment Completed", "success");
+      }
     },
   });
 
@@ -52,7 +64,7 @@ const CheckoutForm = () => {
     axiosSecure
       .post("/create-payment-intent", { price: data.price })
       .then((res) => {
-        console.log(res.data.clientSecret);
+        // console.log(res.data.clientSecret);
         setClientSecret(res.data.clientSecret);
       });
   }, [data.price, axiosSecure]);
@@ -71,10 +83,10 @@ const CheckoutForm = () => {
     });
 
     if (error) {
-      console.log("error", error);
+      // console.log("error", error);
       setError(error.message);
     } else {
-      console.log("payment method", paymentMethod);
+      // console.log("payment method", paymentMethod);
       setError("");
     }
 
@@ -91,9 +103,9 @@ const CheckoutForm = () => {
         },
       });
     if (confirmError) {
-      console.log("confirm error", error);
+      // console.log("confirm error", error);
     } else {
-      console.log("payment Intent", paymentIntent);
+      // console.log("payment Intent", paymentIntent);
       if (paymentIntent.status === "succeeded")
         setTransactionId(paymentIntent.id);
 
@@ -117,13 +129,25 @@ const CheckoutForm = () => {
   };
 
   return (
-    <div>
-      <div>
-        <h3 className="lg:text-4xl font-bold">Payment Details</h3>
-        <p>Enter your card information below for this payment</p>
-        <p>Price: ${data.price}</p>
+    <div className="bg-gray-50 rounded-md my-20 lg:w-1/2 p-4 md:p-16 mx-auto border-2 border-[#1c539f]">
+      <div className="text-center">
+        <h3 className="text-2xl md:text-4xl font-bold">Payment Details</h3>
+        <p className="text-gray-400">
+          Enter your card information below for this payment
+        </p>
+        <p className="py-4 font-bold">Amount Payable: ${data.price}</p>
+        <p className="text-xs">
+          (Use any{" "}
+          <Link
+            className="underline font-bold"
+            to="https://stripe.com/docs/testing"
+            target="_blank">
+            stripe test
+          </Link>{" "}
+          card for payment)
+        </p>
       </div>
-      <form onSubmit={handleSubmit} className="w-1/2">
+      <form onSubmit={handleSubmit} className="w-full">
         <CardElement
           options={{
             style: {
@@ -139,7 +163,7 @@ const CheckoutForm = () => {
               },
             },
           }}
-          className="m-6 p-2 border"
+          className="my-6 p-2 border"
         />
         <Button
           variant="contained"
@@ -149,7 +173,16 @@ const CheckoutForm = () => {
         </Button>
         <p className="text-red-600">{error}</p>
         {transactionId && (
-          <p className="text-green-600">Your transaction id: {transactionId}</p>
+          <div className="text-center">
+            <p className="text-green-600">
+              Your transaction id: {transactionId}
+            </p>
+            <Link to="/">
+              <Button variant="contained" sx={{ my: 2 }}>
+                Return to Home
+              </Button>
+            </Link>
+          </div>
         )}
       </form>
     </div>

@@ -17,7 +17,7 @@ const PopularCourses = () => {
     queryFn: async () => {
       const res = await axiosPublic.get("/courses");
       setLoading(false);
-      return res.data;
+      return res.data.result;
     },
   });
   console.log(courses);

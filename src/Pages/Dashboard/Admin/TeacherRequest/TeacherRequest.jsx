@@ -35,7 +35,7 @@ const TeacherRequest = () => {
         `/instructors/${instructorName}`,
         itemAccept
       );
-      // console.log(res.data.result);
+      // console.log(res.data);
       // refetch();
       console.log({ res1, res2 });
       return { res1, res2 };

@@ -260,7 +260,7 @@ const Dashboard = (props) => {
           {drawer}
         </Drawer>
       </Box>
-      <div className="px-4 py-16 md:px-16">
+      <div className="px-4 py-16 md:px-16 w-full">
         <Outlet></Outlet>
       </div>
     </Box>

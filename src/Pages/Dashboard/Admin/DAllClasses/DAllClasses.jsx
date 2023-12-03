@@ -1,22 +1,46 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { Tooltip } from "@mui/material";
 import { FaCheck, FaLongArrowAltRight } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { Link } from "react-router-dom";
+import useSwal from "../../../../hooks/useSwal";
 
 const DAllClasses = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: courses, isLoading } = useQuery({
+  const {
+    data: courses,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["courses"],
     queryFn: async () => {
       const res = await axiosSecure.get("/courses");
-      return res.data;
+      return res.data.resultAll;
     },
   });
 
-  const handleAccept = () => {};
+  const item = { status: "Accepted" };
+  const { mutate } = useMutation({
+    mutationKey: "updateCourse", // Define a unique mutation key
+    mutationFn: async (id) => {
+      const res = await axiosSecure.patch(`/courses/${id}`, item);
+      console.log(res.data);
+      return res.data;
+    },
+    onSuccess: (data) => {
+      if (data.modifiedCount > 0) {
+        useSwal("The course is Accepted !!!", "success");
+      }
+      refetch();
+    },
+  });
+  const handleAccept = (id) => {
+    console.log(id);
+
+    mutate(id);
+  };
 
   const handleRefuse = () => {};
 
@@ -63,7 +87,7 @@ const DAllClasses = () => {
                   <td className="space-y-2 lg:space-y-0 lg:space-x-2 w-24">
                     <Tooltip title="Accept" placement="top">
                       <button
-                        onClick={() => handleAccept(course.title)}
+                        onClick={() => handleAccept(course._id)}
                         className={
                           course.status === "Accepted" ||
                           course.status === "Rejected"
@@ -79,7 +103,7 @@ const DAllClasses = () => {
                     </Tooltip>
                     <Tooltip title="Reject" placement="top">
                       <button
-                        onClick={() => handleRefuse(course.title)}
+                        onClick={() => handleRefuse(course._id)}
                         className={
                           course.status === "Accepted" ||
                           course.status === "Rejected"

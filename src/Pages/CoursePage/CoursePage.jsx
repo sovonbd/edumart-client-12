@@ -24,8 +24,6 @@ const CoursePage = () => {
   const [loading, setLoading] = useState(true);
   console.log(id);
 
-
-
   const { data: courses = [], isLoading } = useQuery({
     queryKey: ["courses"],
     queryFn: async () => {

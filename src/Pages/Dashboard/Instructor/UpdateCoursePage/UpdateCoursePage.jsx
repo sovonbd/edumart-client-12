@@ -45,6 +45,7 @@ const UpdateCoursePage = () => {
       return res.data;
     },
     onSuccess: (data) => {
+      console.log(data);
       if (data.modifiedCount > 0) {
         useSwal("Your course is updated !!!", "success");
       }

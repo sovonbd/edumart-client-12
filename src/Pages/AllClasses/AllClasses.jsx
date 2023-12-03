@@ -21,11 +21,11 @@ const AllClasses = () => {
     queryFn: async () => {
       const res = await axiosPublic.get("/courses");
       setLoading(false);
-      return res.data;
+      return res.data.result;
     },
   });
   console.log(courses);
-  
+
   // quotes related
   const { data: quotes = [] } = useQuery({
     queryKey: ["quotes"],

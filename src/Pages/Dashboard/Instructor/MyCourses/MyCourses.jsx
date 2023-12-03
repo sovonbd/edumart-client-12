@@ -115,7 +115,7 @@ const MyCourses = () => {
                     <div className="flex flex-col justify-center items-center gap-y-2">
                       <Link to={`/dashboard/update/${course._id}`}>
                         <Tooltip title="Update" placement="right">
-                          <button className="text-green-600 hover:bg-green-500 hover:text-white hover:p-1 hover:rounded-full">
+                          <button className="text-green-600 hover:bg-green-500 hover:text-white hover:p-1 hover:rounded-full text-lg">
                             <RxUpdate></RxUpdate>
                           </button>
                         </Tooltip>
@@ -123,15 +123,14 @@ const MyCourses = () => {
                       <Tooltip title="Delete" placement="right">
                         <button
                           onClick={() => handleDelete(course._id)}
-                          className="text-red-600 hover:bg-red-500 hover:text-white hover:p-1 hover:rounded-full">
+                          className="text-red-600 hover:bg-red-500 hover:text-white hover:p-1 hover:rounded-full text-lg">
                           <RxCross2></RxCross2>
                         </button>
                       </Tooltip>
 
                       <Tooltip title="Details" placement="right">
                         <Link to={`/dashboard/myCourses/${course._id}`}>
-                          <button
-                            className="text-[#1c539f] hover:bg-[#1c539f] hover:text-white hover:p-1 hover:rounded-full">
+                          <button className="text-[#1c539f] hover:bg-[#1c539f] hover:text-white hover:p-1 hover:rounded-full text-lg">
                             <IoMdEye></IoMdEye>
                           </button>
                         </Link>
