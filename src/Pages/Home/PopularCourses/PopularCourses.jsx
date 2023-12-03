@@ -78,7 +78,7 @@ const PopularCourses = () => {
           ]}>
           {sortCourse.map((course) => (
             <PopularCoursesCard
-              key={course.courseId}
+              key={course._id}
               course={course}></PopularCoursesCard>
           ))}
         </Glider>

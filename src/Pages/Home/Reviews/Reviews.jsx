@@ -5,6 +5,7 @@ import Glider from "react-glider";
 import "glider-js/glider.min.css";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import { Rating } from "@mui/material";
 
 const Reviews = () => {
   const intervalRef = useRef(null);
@@ -80,12 +81,21 @@ const Reviews = () => {
                 className="p-6 m-2 space-y-2 border text-center bg-gray-50 flex flex-col items-center justify-center relative rounded-md">
                 <img
                   src={review.image}
-                  className="w-20 h-20 rounded-full"
+                  className="w-20 h-16 rounded-full"
                   alt={review.name}
                 />
-                <h3 className="">{review.name}</h3>
-                <p className="text-lg font-bold pt-10">{review.title}</p>
-                <p className="line-clamp-3">{review.description}</p>
+                <h3 className=" pb-4">{review.name}</h3>
+                <Rating
+                  name="half-rating-read"
+                  defaultValue={review.rating}
+                  precision={0.5}
+                  size="small"
+                  readOnly
+                />
+                <p className="text-lg font-bold pb-4">{review.title}</p>
+                <p className="line-clamp-3 text-sm font-serif font-extralight italic">
+                  {review.description}
+                </p>
               </div>
             ))}
           </Glider>

@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Loading from "../../../../components/Loading/Loading";
@@ -15,6 +15,8 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import useAuth from "../../../../hooks/useAuth";
+import useSwal from "../../../../hooks/useSwal";
 
 const style = {
   position: "absolute",
@@ -36,6 +38,8 @@ const MyEnrollCourseDetails = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const { user } = useAuth();
+  // console.log(user.displayName, user.photoURL);
 
   const {
     register,
@@ -47,7 +51,7 @@ const MyEnrollCourseDetails = () => {
   const { data: course, isLoading: courseLoading } = useQuery({
     queryKey: ["course"],
     queryFn: async () => {
-      const res = await axiosSecure(`/courses/${id}`);
+      const res = await axiosSecure.get(`/courses/${id}`);
       return res.data;
     },
   });
@@ -57,11 +61,42 @@ const MyEnrollCourseDetails = () => {
   const { data: assignments, isLoading } = useQuery({
     queryKey: ["assignment"],
     queryFn: async () => {
-      const res = await axiosSecure(`/assignments/${id}`);
+      const res = await axiosSecure.get(`/assignments/${id}`);
       return res.data;
     },
   });
   // console.log(assignments);
+
+  const { mutate } = useMutation({
+    mutationFn: async (item) => {
+      const res = await axiosSecure.post("/reviews", item);
+      return res.data;
+    },
+    onSuccess: (data) => {
+      console.log(data);
+      if (data.insertedId) {
+        useSwal("Thanks for your review!!!", "success");
+      }
+      handleClose();
+    },
+  });
+
+  const item = {
+    submitted: 1,
+  };
+  const { mutate: assignmentSubmit } = useMutation({
+    mutationFn: async (assignmentId) => {
+      const res = await axiosSecure.patch(`/assignments/${assignmentId}`, item);
+      return res.data;
+    },
+    onSuccess: (data) => {
+      console.log(data);
+      if (data.modifiedCount > 0) {
+        useSwal("Assignment Submitted!!!", "success");
+      }
+      handleClose();
+    },
+  });
 
   if (isLoading || courseLoading) {
     return <Loading></Loading>;
@@ -69,6 +104,21 @@ const MyEnrollCourseDetails = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+    const item = {
+      courseId: id,
+      name: user?.displayName,
+      image: user?.photoURL,
+      title: course?.title,
+      rating: data.rating,
+      description: data.description,
+    };
+    mutate(item);
+  };
+
+  const handleAssignmentSubmit = (id) => {
+    // console.log(id);
+
+    assignmentSubmit(id);
   };
   return (
     <div>
@@ -117,7 +167,7 @@ const MyEnrollCourseDetails = () => {
                   margin="normal"
                   fullWidth
                   id="description"
-                  label="Write your review here"
+                  label="review the course out of 5"
                   name="description"
                   autoComplete="description"
                   autoFocus
@@ -158,7 +208,7 @@ const MyEnrollCourseDetails = () => {
                 </tr>
               </thead>
               {assignments?.map((assignment) => (
-                <tbody key={assignments._id} className="">
+                <tbody key={assignment._id} className="">
                   <tr className="text-center">
                     <td>
                       <div>
@@ -175,7 +225,9 @@ const MyEnrollCourseDetails = () => {
                     </td>
                     <td>
                       <Tooltip title="Submit" placement="top">
-                        <button className="text-xl">
+                        <button
+                          onClick={() => handleAssignmentSubmit(assignment._id)}
+                          className="text-xl">
                           <IoEnterOutline />
                         </button>
                       </Tooltip>
