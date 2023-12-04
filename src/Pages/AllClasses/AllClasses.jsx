@@ -8,11 +8,28 @@ import { RiDoubleQuotesL } from "react-icons/ri";
 import PopularCoursesCard from "../Home/PopularCourses/PopularCoursesCard";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import { CiSearch } from "react-icons/ci";
+import { useForm } from "react-hook-form";
+import { Box, TextField } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import InputBase from "@mui/material/InputBase";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
+import DirectionsIcon from "@mui/icons-material/Directions";
 
 const AllClasses = () => {
   const intervalRef = useRef(null);
   const axiosPublic = useAxiosPublic();
   const [loading, setLoading] = useState(true);
+  const [filteredCourses, setFilteredCourses] = useState([]);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   // courses related
 
@@ -24,8 +41,16 @@ const AllClasses = () => {
       return res.data.result;
     },
   });
-  console.log(courses);
+  // console.log(courses);
 
+  // const { data: searchCourse, isLoading: searchLoading } = useQuery({
+  //   queryKey: ["searchCourse"],
+  //   queryFn: async (search) => {
+  //     const res = await axiosPublic.get(`/courses?title=${search}`);
+  //     console.log(res.data);
+  //     setFilteredCourses(res.data);
+  //   },
+  // });
   // quotes related
   const { data: quotes = [] } = useQuery({
     queryKey: ["quotes"],
@@ -68,6 +93,20 @@ const AllClasses = () => {
 
   // component loading
 
+  const onSubmit = async (data) => {
+    try {
+      setLoading(true);
+      const res = await axiosPublic.get(`/courses/${data.search}`);
+      console.log(res.data); // Check the response structure
+      setLoading(false);
+      // Handle the response data (courses matching the search query)
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+      setLoading(false);
+      // Handle errors while fetching courses
+    }
+  };
+
   if (loading || isLoading) {
     return <Loading></Loading>;
   }
@@ -104,6 +143,30 @@ const AllClasses = () => {
       {/* course related */}
       <div>
         <div className="px-2 md:px-6 my-20">
+          <div className="flex justify-center mb-10">
+            <Paper
+              component="form"
+              onSubmit={handleSubmit(onSubmit)}
+              sx={{
+                p: "2px 4px",
+                display: "flex",
+                alignItems: "center",
+                width: {
+                  xs: 280,
+                  sm: 600,
+                },
+              }}>
+              <InputBase
+                sx={{ ml: 1, flex: 1, p: "10px" }}
+                placeholder="search courses here..."
+                inputProps={{ "aria-label": "search courses here..." }}
+                {...register("search")}
+              />
+              <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
+                <SearchIcon />
+              </IconButton>
+            </Paper>
+          </div>
           <h3 className="text-2xl lg:text-4xl font-medium text-center md:text-left">
             Browser the courses
           </h3>

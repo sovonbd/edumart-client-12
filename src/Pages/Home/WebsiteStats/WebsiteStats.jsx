@@ -2,12 +2,30 @@ import { FaUsers, FaBook, FaUserGraduate } from "react-icons/fa";
 import { GiTeacher } from "react-icons/gi";
 
 import StatAnimation from "../../../hooks/useStatAnimation";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import Loading from "../../../components/Loading/Loading";
 
 const WebsiteStats = () => {
+  const axiosPublic = useAxiosPublic();
   const num1 = 4850;
   const num2 = 2850;
   const num3 = 7850;
   const num4 = 1350;
+
+  const { data: stats, isLoading } = useQuery({
+    queryKey: ["stats"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/stats");
+      return res.data;
+    },
+  });
+
+  console.log(stats);
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
 
   return (
     <div>
@@ -26,7 +44,7 @@ const WebsiteStats = () => {
               <div className="flex items-end gap-3">
                 <FaUsers className="md:text-6xl text-[#1c539f] text-5xl" />
                 <span className="font-bold text-xl lg:text-4xl">
-                  <StatAnimation num={num1} />
+                  <StatAnimation num={stats.totalUsers} />
                 </span>
               </div>
               <p className="lg:text-2xl font-light text-center lg:text-left">
@@ -37,7 +55,7 @@ const WebsiteStats = () => {
               <div className="flex items-end gap-3">
                 <FaBook className="lg:text-6xl text-[#1c539f] text-5xl" />
                 <span className="font-bold text-xl lg:text-4xl">
-                  <StatAnimation num={num2} />
+                  <StatAnimation num={stats.totalCourses} />
                 </span>
               </div>
               <p className="lg:text-2xl font-light text-center lg:text-left">
@@ -48,7 +66,7 @@ const WebsiteStats = () => {
               <div className="flex items-end gap-3">
                 <FaUserGraduate className="lg:text-6xl text-[#1c539f] text-5xl" />
                 <span className="font-bold text-xl lg:text-4xl">
-                  <StatAnimation num={num3} />
+                  <StatAnimation num={stats.totalLearners} />
                 </span>
               </div>
               <p className="lg:text-2xl font-light text-center lg:text-left">
@@ -59,7 +77,7 @@ const WebsiteStats = () => {
               <div className="flex items-end gap-3">
                 <GiTeacher className="lg:text-6xl text-[#1c539f] text-5xl" />
                 <span className="font-bold text-xl lg:text-4xl">
-                  <StatAnimation num={num4} />
+                  <StatAnimation num={stats.totalTeachers} />
                 </span>
               </div>
               <p className="lg:text-2xl font-light text-center lg:text-left">

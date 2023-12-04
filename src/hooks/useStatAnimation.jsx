@@ -15,7 +15,7 @@ const StatAnimation = ({ num }) => {
           duration={2000}
         />
       )}
-      {inView && <span>+</span>}
+      {inView && <span></span>}
     </div>
   );
 };

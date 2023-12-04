@@ -87,12 +87,22 @@ const MyCoursePage = () => {
 
   console.log(assignments);
 
+  // const { data: assignmentName, isLoading: nameLoading } = useQuery({
+  //   queryKey: ["assignmentName"],
+  //   queryFn: async (name) => {
+  //     const res = await axiosSecure.get(`/assignments/${name}`);
+  //     return res.data;
+  //   },
+  // });
+
+  // console.log(assignmentName);
+
   const onSubmit = (data) => {
     // console.log(dayjs(data.date.$d).format("MMM D, YYYY"));
     const assignment = {
       courseId: id,
       title: data.title,
-      deadline: dayjs(data.date.$d).format("MMM D, YYYY"),
+      deadline: dayjs(data.date.$d).format("MMM DD, YYYY"),
       description: data.description,
     };
     console.log(assignment);
@@ -141,7 +151,7 @@ const MyCoursePage = () => {
               </svg>
             </div>
             <div className="stat-title text-sm">Total Assignments</div>
-            <div className="stat-value">{assignments.length}</div>
+            <div className="stat-value">{assignments?.result?.length}</div>
           </div>
 
           <div className="stat">
@@ -158,8 +168,8 @@ const MyCoursePage = () => {
                   d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4 "></path>
               </svg>
             </div>
-            <div className="stat-title text-sm">Assignment Submitted</div>
-            <div className="stat-value">1,200</div>
+            <div className="stat-title text-sm">Total Submission Received</div>
+            <div className="stat-value">{assignments.result1}</div>
           </div>
         </div>
         <div className="text-center py-10">
@@ -255,11 +265,12 @@ const MyCoursePage = () => {
               <th>Title</th>
               <th>Deadline</th>
               <th>Description</th>
+              <th>Today&apos;s Submission</th>
               <th>Total Submission</th>
             </tr>
           </thead>
-          {assignments?.map((assignment) => (
-            <tbody key={assignments._id} className="">
+          {assignments?.result?.map((assignment) => (
+            <tbody key={assignment._id} className="">
               <tr className="text-center">
                 <td>
                   <div>
@@ -270,6 +281,7 @@ const MyCoursePage = () => {
                 <td>
                   <div className="line-clamp-2">{assignment.description}</div>
                 </td>
+                <td>{assignment.submitted || 0}</td>
                 <td>{assignment?.submitted || 0}</td>
               </tr>
             </tbody>

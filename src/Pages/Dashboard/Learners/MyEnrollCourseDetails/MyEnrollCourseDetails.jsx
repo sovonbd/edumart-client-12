@@ -17,6 +17,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../../hooks/useAuth";
 import useSwal from "../../../../hooks/useSwal";
+import dayjs from "dayjs";
 
 const style = {
   position: "absolute",
@@ -65,7 +66,7 @@ const MyEnrollCourseDetails = () => {
       return res.data;
     },
   });
-  // console.log(assignments);
+  console.log(assignments);
 
   const { mutate } = useMutation({
     mutationFn: async (item) => {
@@ -84,6 +85,8 @@ const MyEnrollCourseDetails = () => {
   const item = {
     submitted: 1,
   };
+
+  // console.log(dayjs(new Date()).format("MMM DD, YYYY"));
   const { mutate: assignmentSubmit } = useMutation({
     mutationFn: async (assignmentId) => {
       const res = await axiosSecure.patch(`/assignments/${assignmentId}`, item);
@@ -195,7 +198,7 @@ const MyEnrollCourseDetails = () => {
       </div>
       <hr className="w-2/3 mx-auto border-gray-400 my-6" />
       <div>
-        {assignments.length > 0 ? (
+        {assignments?.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="table w-[100%] lg:w-2/3 mx-auto bg-gray-50 ">
               {/* head */}

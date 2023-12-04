@@ -39,26 +39,34 @@ const PopularCoursesCard = ({ course }) => {
             <small>{instructor}</small>
           </div>
           {/* <p>({numOfRatingProviders})</p> */}
-          <p className="flex items-center gap-1">
-            <span className="font-bold">{ratings}</span>
-            <Rating
-              name="half-rating-read"
-              defaultValue={ratings}
-              precision={0.5}
-              size="small"
-              readOnly
-            />
-            <small>({numOfRatingProviders?.toLocaleString()}+ reviews)</small>
-          </p>
 
+          <p className="text-sm">
+            <span className="font-bold">
+              {numOfTotalEnrollment?.toLocaleString()}
+            </span>{" "}
+            already enrolled
+          </p>
           {location.pathname === "/allClasses" ? (
             <div className="space-y-2">
-              <p className="text-sm">
+              {/* <p className="flex items-center gap-1">
+                <span className="font-bold">{ratings}</span>
+                <Rating
+                  name="half-rating-read"
+                  defaultValue={ratings}
+                  precision={0.5}
+                  size="small"
+                  readOnly
+                />
+                <small>
+                  ({numOfRatingProviders?.toLocaleString()}+ reviews)
+                </small>
+              </p> */}
+              {/* <p className="text-sm">
                 <span className="font-bold">
                   {numOfTotalEnrollment?.toLocaleString()}
                 </span>{" "}
                 already enrolled
-              </p>
+              </p> */}
               <div>
                 <Link to={`${_id}`}>
                   <Button variant="contained" sx={{ width: "100%" }}>
