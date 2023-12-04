@@ -2,7 +2,9 @@ import { Button } from "@mui/material";
 
 const BecomeInstructor = () => {
   return (
-    <div className="flex flex-col md:flex-row justify-around items-center gap-4 md:gap-5 lg:gap-16 lg:px-20 my-20 px-6 lg:w-2/3 mx-auto text-center md:text-left">
+    <div
+      className="flex flex-col md:flex-row justify-around items-center gap-4 md:gap-5 lg:gap-16 lg:px-20 my-20 px-6 lg:w-2/3 mx-auto text-center md:text-left"
+      data-aos="fade-up">
       <div>
         <img
           src="https://i.ibb.co/xj9qVHS/pngwing-com-10.png"

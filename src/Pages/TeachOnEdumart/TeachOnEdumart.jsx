@@ -30,14 +30,14 @@ const TeachOnEdumart = () => {
       // if (res.data.message === true) {
       //   setReqSent(true);
       // }
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
     enabled: !!user.displayName,
   });
 
-  console.log(userData);
-  console.log(userData?.status);
+  // console.log(userData);
+  // console.log(userData?.status);
   // console.log(userData.);
 
   const {
@@ -49,7 +49,7 @@ const TeachOnEdumart = () => {
   const { mutate, isLoading: mutationLoading } = useMutation({
     mutationFn: async (item) => {
       const res = await axiosSecure.post("/instructors", item);
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
     onSuccess: (data) => {

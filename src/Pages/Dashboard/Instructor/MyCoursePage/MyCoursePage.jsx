@@ -37,7 +37,7 @@ const style = {
 
 const MyCoursePage = () => {
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
   const axiosSecure = useAxiosSecure();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -54,7 +54,7 @@ const MyCoursePage = () => {
     queryKey: ["courses"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/courses/${id}`);
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
   });
@@ -62,7 +62,7 @@ const MyCoursePage = () => {
   const { mutate } = useMutation({
     mutationFn: async (item) => {
       const res = await axiosSecure.post("/assignments", item);
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
     onSuccess: (data) => {
@@ -85,7 +85,7 @@ const MyCoursePage = () => {
     },
   });
 
-  console.log(assignments);
+  // console.log(assignments);
 
   // const { data: assignmentName, isLoading: nameLoading } = useQuery({
   //   queryKey: ["assignmentName"],
@@ -105,7 +105,7 @@ const MyCoursePage = () => {
       deadline: dayjs(data.date.$d).format("MMM DD, YYYY"),
       description: data.description,
     };
-    console.log(assignment);
+    // console.log(assignment);
     mutate(assignment);
     refetch();
   };

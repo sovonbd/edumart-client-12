@@ -31,7 +31,7 @@ const MyCourses = () => {
   const { mutate } = useMutation({
     mutationFn: async (id) => {
       const res = await axiosSecure.delete(`/courses/${id}`);
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
   });

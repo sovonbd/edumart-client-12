@@ -22,17 +22,17 @@ const Users = () => {
       return res.data;
     },
   });
-  console.log(userInfo);
+  // console.log(userInfo);
 
   const item = { role: "admin" };
   const { mutate } = useMutation({
     mutationFn: async (userName) => {
       const res = await axiosSecure.patch(`/users/${userName}`, item);
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
     onSuccess: (data) => {
-      console.log(data);
+      // console.log(data);
       if (data.result.modifiedCount > 0) {
         useSwal(`${data.name} is Admin now`, "success");
       }

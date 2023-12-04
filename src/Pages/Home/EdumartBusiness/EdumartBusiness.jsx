@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const EdumartBusiness = () => {
   return (
-    <div className="lg:w-2/3 mx-auto my-10 flex flex-col-reverse md:flex-row px-6 justify-center items-center gap-6 lg:gap-16">
+    <div className="lg:w-2/3 mx-auto my-10 flex flex-col-reverse md:flex-row px-6 justify-center items-center gap-6 lg:gap-16" data-aos="fade-up">
       <div className="text-center md:text-left space-y-2 lg:space-y-4 lg:w-2/5">
         <h3 className="text-lg lg:text-3xl">
           <span className="font-bold">Edumart</span>{" "}

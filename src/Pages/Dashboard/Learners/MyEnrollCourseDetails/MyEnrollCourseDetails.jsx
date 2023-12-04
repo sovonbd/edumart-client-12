@@ -74,7 +74,7 @@ const MyEnrollCourseDetails = () => {
       return res.data;
     },
     onSuccess: (data) => {
-      console.log(data);
+      // console.log(data);
       if (data.insertedId) {
         useSwal("Thanks for your review!!!", "success");
       }
@@ -93,7 +93,7 @@ const MyEnrollCourseDetails = () => {
       return res.data;
     },
     onSuccess: (data) => {
-      console.log(data);
+      // console.log(data);
       if (data.modifiedCount > 0) {
         useSwal("Assignment Submitted!!!", "success");
       }
@@ -106,7 +106,7 @@ const MyEnrollCourseDetails = () => {
   }
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     const item = {
       courseId: id,
       name: user?.displayName,
@@ -198,7 +198,7 @@ const MyEnrollCourseDetails = () => {
       </div>
       <hr className="w-2/3 mx-auto border-gray-400 my-6" />
       <div>
-        {assignments?.length > 0 ? (
+        {assignments.result?.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="table w-[100%] lg:w-2/3 mx-auto bg-gray-50 ">
               {/* head */}
@@ -210,7 +210,7 @@ const MyEnrollCourseDetails = () => {
                   <th>Action</th>
                 </tr>
               </thead>
-              {assignments?.map((assignment) => (
+              {assignments.result?.map((assignment) => (
                 <tbody key={assignment._id} className="">
                   <tr className="text-center">
                     <td>

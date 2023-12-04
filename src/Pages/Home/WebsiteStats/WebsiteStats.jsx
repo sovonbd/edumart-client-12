@@ -21,7 +21,7 @@ const WebsiteStats = () => {
     },
   });
 
-  console.log(stats);
+  // console.log(stats);
 
   if (isLoading) {
     return <Loading></Loading>;
@@ -29,7 +29,9 @@ const WebsiteStats = () => {
 
   return (
     <div>
-      <div className="flex flex-col md:flex-row justify-around items-center mx-auto md:gap-5 lg:px-20 my-20 px-6 ">
+      <div
+        className="flex flex-col md:flex-row justify-around items-center mx-auto md:gap-5 lg:px-20 my-20 px-6 "
+        data-aos="fade-up">
         <img
           src="https://i.ibb.co/XWC74rW/pngwing-com-13.png"
           className="md:w-1/2"

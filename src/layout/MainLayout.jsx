@@ -4,7 +4,7 @@ import Footer from "../components/Footer/Footer";
 
 const MainLayout = () => {
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   return (
     <div>
       {location.pathname !== "/login" &&

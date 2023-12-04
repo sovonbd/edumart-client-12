@@ -22,7 +22,7 @@ const CoursePage = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const [loading, setLoading] = useState(true);
-  console.log(id);
+  // console.log(id);
 
   const { data: courses = [], isLoading } = useQuery({
     queryKey: ["courses"],
@@ -37,7 +37,7 @@ const CoursePage = () => {
     return <Loading></Loading>;
   }
 
-  console.log(courses);
+  // console.log(courses);
 
   if (!courses || courses.length === 0) {
     return <div>No courses found</div>;

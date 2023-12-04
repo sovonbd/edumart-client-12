@@ -37,7 +37,7 @@ const TeacherRequest = () => {
       );
       // console.log(res.data);
       // refetch();
-      console.log({ res1, res2 });
+      // console.log({ res1, res2 });
       return { res1, res2 };
     },
     onSuccess: (data) => {
@@ -57,7 +57,7 @@ const TeacherRequest = () => {
         `/instructors/${instructorName}`,
         itemReject
       );
-      console.log(res1.data);
+      // console.log(res1.data);
       return res1.data;
     },
     onSuccess: (data) => {

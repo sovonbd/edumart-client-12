@@ -20,7 +20,7 @@ const PopularCourses = () => {
       return res.data.result;
     },
   });
-  console.log(courses);
+  // console.log(courses);
 
   // component loading
 

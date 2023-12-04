@@ -24,7 +24,7 @@ const SocialLogin = () => {
         };
         // console.log(userInfo);
         axiosPublic.post("/users", userInfo).then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
         });
         Swal.fire({
           position: "center",

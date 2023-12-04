@@ -93,19 +93,19 @@ const AllClasses = () => {
 
   // component loading
 
-  const onSubmit = async (data) => {
-    try {
-      setLoading(true);
-      const res = await axiosPublic.get(`/courses/${data.search}`);
-      console.log(res.data); // Check the response structure
-      setLoading(false);
-      // Handle the response data (courses matching the search query)
-    } catch (error) {
-      console.error("Error fetching courses:", error);
-      setLoading(false);
-      // Handle errors while fetching courses
-    }
-  };
+  // const onSubmit = async (data) => {
+  //   try {
+  //     setLoading(true);
+  //     const res = await axiosPublic.get(`/courses/${data.search}`);
+  //     console.log(res.data); // Check the response structure
+  //     setLoading(false);
+  //     // Handle the response data (courses matching the search query)
+  //   } catch (error) {
+  //     console.error("Error fetching courses:", error);
+  //     setLoading(false);
+  //     // Handle errors while fetching courses
+  //   }
+  // };
 
   if (loading || isLoading) {
     return <Loading></Loading>;
@@ -143,7 +143,7 @@ const AllClasses = () => {
       {/* course related */}
       <div>
         <div className="px-2 md:px-6 my-20">
-          <div className="flex justify-center mb-10">
+          {/* <div className="flex justify-center mb-10">
             <Paper
               component="form"
               onSubmit={handleSubmit(onSubmit)}
@@ -166,7 +166,7 @@ const AllClasses = () => {
                 <SearchIcon />
               </IconButton>
             </Paper>
-          </div>
+          </div> */}
           <h3 className="text-2xl lg:text-4xl font-medium text-center md:text-left">
             Browser the courses
           </h3>

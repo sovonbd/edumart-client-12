@@ -13,12 +13,12 @@ const Sponsors = () => {
     },
   });
 
-  console.log(sponsors);
+  // console.log(sponsors);
   if (isLoading) {
     return <Loading></Loading>;
   }
   return (
-    <div className="bg-gray-100 py-10 lg:py-20 my-10 text-center">
+    <div className="bg-gray-100 py-10 lg:py-20 my-10 text-center" data-aos="fade-up">
       <h3 className="lg:text-2xl font-bold">
         We collaborate with{" "}
         <span className="text-[#1c539f]">

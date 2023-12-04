@@ -23,7 +23,7 @@ const ClassProgress = () => {
     },
   });
 
-  console.log(reviews);
+  // console.log(reviews);
   if (isLoading) {
     return <Loading></Loading>;
   }

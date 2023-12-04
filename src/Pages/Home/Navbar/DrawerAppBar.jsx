@@ -36,7 +36,7 @@ function DrawerAppBar(props) {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const { user, logOut } = useAuth();
 
-  console.log(user);
+  // console.log(user);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);

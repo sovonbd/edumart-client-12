@@ -15,7 +15,7 @@ const MyProfile = () => {
     enabled: !!user,
   });
 
-  console.log(userInfo);
+  // console.log(userInfo);
 
   if (isLoading) {
     return <Loading></Loading>;

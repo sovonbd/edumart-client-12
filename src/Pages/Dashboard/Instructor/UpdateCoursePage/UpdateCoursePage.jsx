@@ -41,11 +41,11 @@ const UpdateCoursePage = () => {
   const { mutate } = useMutation({
     mutationFn: async (item) => {
       const res = await axiosSecure.patch(`/courses/${courseInfo._id}`, item);
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
     onSuccess: (data) => {
-      console.log(data);
+      // console.log(data);
       if (data.modifiedCount > 0) {
         useSwal("Your course is updated !!!", "success");
       }
@@ -64,7 +64,7 @@ const UpdateCoursePage = () => {
       description: data.description,
       image: data.image,
     };
-    console.log(course);
+    // console.log(course);
     mutate(course);
   };
 

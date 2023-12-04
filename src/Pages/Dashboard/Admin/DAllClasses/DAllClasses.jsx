@@ -26,7 +26,7 @@ const DAllClasses = () => {
     mutationKey: "updateCourse", // Define a unique mutation key
     mutationFn: async (id) => {
       const res = await axiosSecure.patch(`/courses/${id}`, item);
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
     onSuccess: (data) => {
@@ -37,7 +37,7 @@ const DAllClasses = () => {
     },
   });
   const handleAccept = (id) => {
-    console.log(id);
+    // console.log(id);
 
     mutate(id);
   };

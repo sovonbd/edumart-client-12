@@ -20,7 +20,7 @@ const MyEnrollCourses = () => {
     enabled: !!user,
   });
 
-  console.log(courses);
+  // console.log(courses);
   if (isLoading) {
     return <Loading></Loading>;
   }

@@ -60,7 +60,7 @@ const MyCourses = () => {
   const { mutate } = useMutation({
     mutationFn: async (item) => {
       const res = await axiosSecure.patch(`/courses/${courses._id}`, item);
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
     onSuccess: (data) => {
@@ -80,7 +80,7 @@ const MyCourses = () => {
       description: data.description,
       image: data.image,
     };
-    console.log(course);
+    // console.log(course);
     // mutate(course);
   };
   const handleDelete = () => {};

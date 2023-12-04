@@ -30,7 +30,7 @@ const AddClass = () => {
   const { mutate } = useMutation({
     mutationFn: async (item) => {
       const res = await axiosSecure.post("/courses", item);
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
     onSuccess: (data) => {

@@ -56,7 +56,9 @@ const Reviews = () => {
   }
 
   return (
-    <div className="bg-gray-100 py-10 lg:py-20 text-center my-20">
+    <div
+      className="bg-gray-100 py-10 lg:py-20 text-center my-20"
+      data-aos="fade-up">
       <div className="w-full lg:w-2/3 mx-auto">
         <div className="">
           <h3 className="text-2xl lg:text-4xl font-medium text-center">
@@ -77,7 +79,7 @@ const Reviews = () => {
             ref={callbackRef}>
             {reviews.map((review) => (
               <div
-                key={review.id}
+                key={review._id}
                 className="p-6 m-2 space-y-2 border text-center bg-gray-50 flex flex-col items-center justify-center relative rounded-md">
                 <img
                   src={review.image}
