@@ -50,7 +50,7 @@ Edumart is an innovative online learning platform designed to connect students a
 
 ## Contributing
 
-We welcome contributions to enhance and improve Edumart! Please feel free to fork this repository, make changes, and submit pull requests.
+I welcome contributions to enhance and improve Edumart! Please feel free to fork this repository, make changes, and submit pull requests.
 
 ## Acknowledgements
 

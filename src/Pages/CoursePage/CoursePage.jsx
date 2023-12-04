@@ -111,7 +111,7 @@ const CoursePage = () => {
                 <p className="font-bold">Created By</p>
                 <div className="flex items-center gap-1">
                   <img
-                    src="https://i.ibb.co/sHYFL9Z/pngwing-com-6.png"
+                    src={instructorImage}
                     className="w-10 h-10 border-2 border-gray-400 p-1 rounded-full"
                     alt=""
                   />

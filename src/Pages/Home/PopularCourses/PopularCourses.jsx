@@ -76,7 +76,7 @@ const PopularCourses = () => {
               },
             },
           ]}>
-          {sortCourse.map((course) => (
+          {sortCourse?.slice(0, 10).map((course) => (
             <PopularCoursesCard
               key={course._id}
               course={course}></PopularCoursesCard>
