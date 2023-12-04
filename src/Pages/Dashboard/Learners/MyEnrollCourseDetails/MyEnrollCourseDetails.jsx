@@ -155,7 +155,7 @@ const MyEnrollCourseDetails = () => {
                   margin="normal"
                   fullWidth
                   id="rating"
-                  label="provide your ratings here"
+                  label="review the course out of 5"
                   name="rating"
                   autoComplete="rating"
                   autoFocus
@@ -170,7 +170,7 @@ const MyEnrollCourseDetails = () => {
                   margin="normal"
                   fullWidth
                   id="description"
-                  label="review the course out of 5"
+                  label="write your reviews here"
                   name="description"
                   autoComplete="description"
                   autoFocus
