@@ -58,4 +58,4 @@ I would like to express my gratitude to the open-source community for their inva
 
 ---
 
-_This README serves as a guide and overview of Edumart. For detailed instructions and additional information, please refer to the project documentation or contact the contributors._
+_This README serves as a guide and overview of Edumart. For detailed instructions and additional information, please refer to the project documentation or contact the contributor._
