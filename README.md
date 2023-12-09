@@ -40,13 +40,13 @@ Edumart is an innovative online learning platform designed to connect students a
 - **Axios**: Facilitates asynchronous HTTP requests.
 - **Tanstack Query and React Hook Form**: State management and form handling
 - **Stripe**: Integration for secure card payments
+- **Google Authentication**: Ensures robust security measures for user authentication.
 
 ### Backend
 
 - **Express**: Utilized as the web application framework.
 - **MongoDB**: Chosen as the database for storing application data.
 - **JSON Web Tokens (JWT)**: Implemented for secure authentication.
-- **Google Authentication**: Ensures robust security measures for user authentication.
 
 ## Contributing
 
