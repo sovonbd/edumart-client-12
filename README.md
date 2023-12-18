@@ -1,7 +1,8 @@
 # Edumart
 
 Check out the live demo of Edumart: [Edumart Live Demo](https://edumart-3502a.web.app/)
-Check out the live demo of Edumart: [Edumart-Server]([https://edumart-3502a.web.app/](https://github.com/sovonbd/edumart-server-12))
+
+Check out the live demo of Edumart: [Edumart-Server](https://github.com/sovonbd/edumart-server-12)
 
 Edumart is an innovative online learning platform designed to connect students and teachers in an intuitive, collaborative educational environment. This platform empowers students to enroll in courses created by passionate educators while ensuring quality through an approval process overseen by administrators. By fostering interaction through reviews, assignments, and comprehensive tracking features, Edumart is revolutionizing the online learning experience.
 
