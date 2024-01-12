@@ -5,26 +5,34 @@ import { FaCheck, FaLongArrowAltRight } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import useSwal from "../../../../hooks/useSwal";
+import Loading from "../../../../components/Loading/Loading";
+import { useState } from "react";
+import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 const DAllClasses = () => {
   const axiosSecure = useAxiosSecure();
+  const [coursesPerPage, setCoursesPerPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const {
     data: courses,
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["courses"],
+    queryKey: ["courses", currentPage, coursesPerPage],
     queryFn: async () => {
-      const res = await axiosSecure.get("/courses");
-      return res.data.resultAll;
+      const res = await axiosSecure.get(
+        `/courses?page=${currentPage}&size=${coursesPerPage}`
+      );
+
+      const res1 = await axiosSecure.get("/totalCourses");
+
+      return [res.data.resultAll, res1.data.count];
     },
   });
 
-  // const item = { status: "Accepted" };
-
   const { mutate } = useMutation({
-    mutationKey: "updateCourse", // Define a unique mutation key
+    mutationKey: "updateCourse",
     mutationFn: async ({ id, status }) => {
       const res = await axiosSecure.patch(`/courses/${id}`, { status });
       // console.log(res.data);
@@ -38,13 +46,40 @@ const DAllClasses = () => {
     },
   });
 
-  console.log(courses?.length);
   const handleAccept = (id) => {
     mutate({ id, status: "Accepted" });
   };
 
   const handleRefuse = (id) => {
     mutate({ id, status: "Rejected" });
+  };
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+
+  // pagination
+  const numberOfPages = Math.floor(courses[1]/ coursesPerPage);
+  const pages = [...Array(numberOfPages).keys()];
+  // console.log(pages);
+
+  const handleCoursesPerPage = (e) => {
+    // console.log(e.target.value);
+    const val = parseInt(e.target.value);
+    setCoursesPerPage(val);
+    setCurrentPage(1);
+  };
+
+  const handlePrev = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (currentPage < pages.length) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
   return (
@@ -65,7 +100,7 @@ const DAllClasses = () => {
                 <th>Progress</th>
               </tr>
             </thead>
-            {courses?.map((course) => (
+            {courses[0]?.map((course) => (
               <tbody key={course._id}>
                 <tr className="text-center">
                   <td>
@@ -136,6 +171,37 @@ const DAllClasses = () => {
             ))}
           </table>
         </div>
+      </div>
+      <div className="text-center flex justify-center items-center">
+        <button onClick={handlePrev} className="pr-4">
+          <GrFormPrevious />
+        </button>
+        <button className="space-x-2">
+          {pages.map((page) => (
+            <button
+              onClick={() => setCurrentPage(page + 1)}
+              key={page}
+              className={`${
+                currentPage === page + 1 &&
+                "px-3 py-1 hover:bg-gray-400 bg-gray-400 rounded-full my-6"
+              } px-3 py-1 hover:bg-gray-400 bg-gray-200 rounded-full my-6`}>
+              {page + 1}
+            </button>
+          ))}
+        </button>
+        <button onClick={handleNext} className="pl-4 pr-10">
+          <GrFormNext />
+        </button>
+        <select
+          value={coursesPerPage}
+          onChange={handleCoursesPerPage}
+          id=""
+          className="bg-gray-200 px-1 py-2 rounded-md">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+        </select>
       </div>
     </div>
   );
