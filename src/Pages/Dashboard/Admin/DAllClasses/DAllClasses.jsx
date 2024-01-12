@@ -21,28 +21,31 @@ const DAllClasses = () => {
     },
   });
 
-  const item = { status: "Accepted" };
+  // const item = { status: "Accepted" };
+
   const { mutate } = useMutation({
     mutationKey: "updateCourse", // Define a unique mutation key
-    mutationFn: async (id) => {
-      const res = await axiosSecure.patch(`/courses/${id}`, item);
+    mutationFn: async ({ id, status }) => {
+      const res = await axiosSecure.patch(`/courses/${id}`, { status });
       // console.log(res.data);
       return res.data;
     },
     onSuccess: (data) => {
       if (data.modifiedCount > 0) {
-        useSwal("The course is Accepted !!!", "success");
+        useSwal("The course status updated !!!", "success");
       }
       refetch();
     },
   });
-  const handleAccept = (id) => {
-    // console.log(id);
 
-    mutate(id);
+  console.log(courses?.length);
+  const handleAccept = (id) => {
+    mutate({ id, status: "Accepted" });
   };
 
-  const handleRefuse = () => {};
+  const handleRefuse = (id) => {
+    mutate({ id, status: "Rejected" });
+  };
 
   return (
     <div>
