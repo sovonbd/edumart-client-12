@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const BecomeInstructor = () => {
   return (
@@ -18,9 +19,13 @@ const BecomeInstructor = () => {
           Instructors from around the world teach thousands of learners on
           Edumart. We provide the tools and skills to teach what you love.
         </p>
-        <Button variant="contained" sx={{ width: { xs: 1, md: "auto" } }}>
-          Start teaching today
-        </Button>
+        <div>
+          <Link to="/teachOnEdumart">
+            <Button variant="contained" sx={{ width: { xs: 1, md: "auto" } }}>
+              Start teaching today
+            </Button>
+          </Link>
+        </div>
       </div>
     </div>
   );
