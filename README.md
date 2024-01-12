@@ -2,6 +2,8 @@
 
 Check out the live demo of Edumart: [Edumart Live Demo](https://edumart-3502a.web.app/)
 
+Check out the server side code of Edumart: [Edumart-Server](https://github.com/sovonbd/edumart-server-12)
+
 Edumart is an innovative online learning platform designed to connect students and teachers in an intuitive, collaborative educational environment. This platform empowers students to enroll in courses created by passionate educators while ensuring quality through an approval process overseen by administrators. By fostering interaction through reviews, assignments, and comprehensive tracking features, Edumart is revolutionizing the online learning experience.
 
 ## Features
@@ -40,13 +42,13 @@ Edumart is an innovative online learning platform designed to connect students a
 - **Axios**: Facilitates asynchronous HTTP requests.
 - **Tanstack Query and React Hook Form**: State management and form handling
 - **Stripe**: Integration for secure card payments
+- **Google Authentication**: Ensures robust security measures for user authentication.
 
 ### Backend
 
 - **Express**: Utilized as the web application framework.
 - **MongoDB**: Chosen as the database for storing application data.
 - **JSON Web Tokens (JWT)**: Implemented for secure authentication.
-- **Google Authentication**: Ensures robust security measures for user authentication.
 
 ## Contributing
 
@@ -58,4 +60,4 @@ I would like to express my gratitude to the open-source community for their inva
 
 ---
 
-_This README serves as a guide and overview of Edumart. For detailed instructions and additional information, please refer to the project documentation or contact the contributors._
+_This README serves as a guide and overview of Edumart. For detailed instructions and additional information, please refer to the project documentation or contact the contributor._
