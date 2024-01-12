@@ -53,7 +53,7 @@ const Dashboard = (props) => {
     },
   });
 
-  console.log(teacher?.role);
+  // console.log(teacher?.role);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);

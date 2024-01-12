@@ -59,8 +59,8 @@ const DAllClasses = () => {
   }
 
   // pagination
-  const numberOfPages = Math.floor(courses[1]/ coursesPerPage);
-  const pages = [...Array(numberOfPages).keys()];
+  const numberOfPages = Math.floor(courses[1] / coursesPerPage);
+  const pages = [...Array(numberOfPages+1).keys()];
   // console.log(pages);
 
   const handleCoursesPerPage = (e) => {
