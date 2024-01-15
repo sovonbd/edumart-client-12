@@ -173,7 +173,7 @@ const AllClasses = () => {
           <p className="text-center md:text-left pt-4 md:pt-0">
             Explore our newest programs, focused on delivering in-demand skills.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 lg:gap-x-6 gap-y-10 p-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 lg:gap-x-6 gap-y-10 p-5">
             {courses?.map((course) => (
               <PopularCoursesCard
                 key={course._id}

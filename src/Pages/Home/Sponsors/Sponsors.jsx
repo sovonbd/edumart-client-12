@@ -18,7 +18,9 @@ const Sponsors = () => {
     return <Loading></Loading>;
   }
   return (
-    <div className="bg-gray-100 py-10 lg:py-20 my-10 text-center" data-aos="fade-up">
+    <div
+      className="bg-gray-100 py-10 lg:py-20 my-10 text-center"
+      data-aos="fade-up">
       <h3 className="lg:text-2xl font-bold">
         We collaborate with{" "}
         <span className="text-[#1c539f]">
@@ -27,7 +29,7 @@ const Sponsors = () => {
       </h3>
       <div>
         <Marquee pauseOnHover={true}>
-          <div className="flex lg:gap-12 pt-5 lg:pt-10">
+          <div className="flex lg:gap-12 2xl:gap-24 pt-5 lg:pt-10">
             {sponsors.map((sponsor) => (
               <img
                 key={sponsor._id}
