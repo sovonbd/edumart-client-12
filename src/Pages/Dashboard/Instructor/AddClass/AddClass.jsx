@@ -61,6 +61,7 @@ const AddClass = () => {
       image: data.image,
       instructorImage: user?.photoURL,
       status: "Pending",
+      numOfTotalEnrollment: 0,
     };
 
     // console.log(course);
