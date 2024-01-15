@@ -13,9 +13,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import { Avatar, Menu, MenuItem, Tooltip } from "@mui/material";
+import useSwal from "../../../hooks/useSwal";
 
 const drawerWidth = 240;
 const navItems = [
@@ -34,6 +35,8 @@ function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate();
+
   const { user, logOut } = useAuth();
 
   // console.log(user);
@@ -52,7 +55,10 @@ function DrawerAppBar(props) {
 
   const handleLogout = () => {
     logOut()
-      .then()
+      .then(() => {
+        useSwal("logout completed", "success");
+        navigate("/");
+      })
       .catch((err) => console.log(err));
   };
 

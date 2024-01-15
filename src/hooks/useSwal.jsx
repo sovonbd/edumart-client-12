@@ -8,6 +8,7 @@ const useSwal = (message, statusIcon) => {
     showConfirmButton: false,
     timer: 2000,
   });
+  
 };
 
 export default useSwal;
