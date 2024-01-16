@@ -8,22 +8,13 @@ import { RiDoubleQuotesL } from "react-icons/ri";
 import PopularCoursesCard from "../Home/PopularCourses/PopularCoursesCard";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
-import { CiSearch } from "react-icons/ci";
 import { useForm } from "react-hook-form";
-import { Box, TextField } from "@mui/material";
-import Paper from "@mui/material/Paper";
-import InputBase from "@mui/material/InputBase";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
-import DirectionsIcon from "@mui/icons-material/Directions";
+
 
 const AllClasses = () => {
   const intervalRef = useRef(null);
   const axiosPublic = useAxiosPublic();
   const [loading, setLoading] = useState(true);
-  const [filteredCourses, setFilteredCourses] = useState([]);
 
   const {
     register,
