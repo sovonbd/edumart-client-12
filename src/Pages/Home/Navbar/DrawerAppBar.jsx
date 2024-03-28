@@ -17,6 +17,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import { Avatar, Menu, MenuItem, Tooltip } from "@mui/material";
 import useSwal from "../../../hooks/useSwal";
+import ReturnPortfolio from "../../../components/ReturnPortfolio/ReturnPortfolio";
 
 const drawerWidth = 240;
 const navItems = [
@@ -98,174 +99,165 @@ function DrawerAppBar(props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar
-        component="nav"
-        sx={{
-          backgroundColor: "white",
-          boxShadow: "none",
-          position: "fixed",
-        }}>
-        <Toolbar sx={{ justifyContent: "space-between" }}>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <IconButton
-              color="primary"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { sm: "none" } }}>
-              <MenuIcon />
-            </IconButton>
-            <Link to="/">
-              <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}>
-                <img
-                  src="https://i.ibb.co/qpSr2vd/edumart-high-resolution-logo-transparent-1.png"
-                  className="w-48"
-                  alt=""
-                />
-              </Box>
-            </Link>
-          </Box>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Box sx={{ display: { xs: "none", sm: "block" } }}>
-              {navItems.map((item, idx) => (
-                <Button
-                  key={idx}
-                  variant={item.text === "Teach on Edumart" ? "outlined" : ""}
-                  size="large"
-                  sx={{ ml: 1 }}>
-                  <Link to={item.to}>
-                    <Typography
-                      color="black"
-                      sx={{
-                        fontSize: "14px",
-                        textTransform: "capitalize",
-                      }}>
-                      {item.text}
-                    </Typography>
-                  </Link>
-                </Button>
-              ))}
+    <div className="">
+      <Box sx={{ display: "flex" }}>
+        {/* <CssBaseline /> */}
+        <AppBar
+          className="mt-12"
+          component="nav"
+          sx={{
+            backgroundColor: "white",
+            boxShadow: "none",
+            position: "fixed",
+          }}>
+          <Toolbar sx={{ justifyContent: "space-between" }}>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <IconButton
+                color="primary"
+                aria-label="open drawer"
+                edge="start"
+                onClick={handleDrawerToggle}
+                sx={{ mr: 2, display: { sm: "none" } }}>
+                <MenuIcon />
+              </IconButton>
+              <Link to="/">
+                <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}>
+                  <img
+                    src="https://i.ibb.co/qpSr2vd/edumart-high-resolution-logo-transparent-1.png"
+                    className="w-48"
+                    alt=""
+                  />
+                </Box>
+              </Link>
             </Box>
-            <Box>
-              {user ? (
-                <Toolbar disableGutters sx={{ ml: 3 }}>
-                  <Box sx={{ flexGrow: 0 }}>
-                    <Tooltip title="Open settings">
-                      <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                        <Avatar alt="" src={user?.photoURL} />
-                      </IconButton>
-                    </Tooltip>
-                    <Menu
-                      sx={{ mt: "48px" }}
-                      id="menu-appbar"
-                      anchorEl={anchorElUser}
-                      anchorOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
-                      }}
-                      keepMounted
-                      transformOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
-                      }}
-                      open={Boolean(anchorElUser)}
-                      onClose={handleCloseUserMenu}>
-                      {settings.map((setting, idx) => (
-                        <MenuItem
-                          key={idx}
-                          onClick={
-                            setting.text === "Username"
-                              ? null
-                              : handleCloseUserMenu
-                          }
-                          sx={{
-                            "&:hover": {
-                              backgroundColor:
-                                setting.text === "Username"
-                                  ? "transparent"
-                                  : "",
-                            },
-                          }}
-                          disableRipple={setting.text === "Username"}>
-                          {setting.text === "Username" ? (
-                            <Box>
-                              <Typography textAlign="center">
-                                {user.displayName}
-                              </Typography>
-                              <hr className="h-[1px] w-[120px] bg-black" />{" "}
-                            </Box>
-                          ) : setting.text === "Logout" ? (
-                            <Typography
-                              textAlign="center"
-                              onClick={handleLogout}>
-                              {setting.text}
-                            </Typography>
-                          ) : (
-                            <Link to={setting.to}>
-                              <Typography textAlign="center">
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <Box sx={{ display: { xs: "none", sm: "block" } }}>
+                {navItems.map((item, idx) => (
+                  <Button
+                    key={idx}
+                    variant={item.text === "Teach on Edumart" ? "outlined" : ""}
+                    size="large"
+                    sx={{ ml: 1 }}>
+                    <Link to={item.to}>
+                      <Typography
+                        color="black"
+                        sx={{
+                          fontSize: "14px",
+                          textTransform: "capitalize",
+                        }}>
+                        {item.text}
+                      </Typography>
+                    </Link>
+                  </Button>
+                ))}
+              </Box>
+              <Box>
+                {user ? (
+                  <Toolbar disableGutters sx={{ ml: 3 }}>
+                    <Box sx={{ flexGrow: 0 }}>
+                      <Tooltip title="Open settings">
+                        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                          <Avatar alt="" src={user?.photoURL} />
+                        </IconButton>
+                      </Tooltip>
+                      <Menu
+                        sx={{ mt: "48px" }}
+                        id="menu-appbar"
+                        anchorEl={anchorElUser}
+                        anchorOrigin={{
+                          vertical: "top",
+                          horizontal: "right",
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                          vertical: "top",
+                          horizontal: "right",
+                        }}
+                        open={Boolean(anchorElUser)}
+                        onClose={handleCloseUserMenu}>
+                        {settings.map((setting, idx) => (
+                          <MenuItem
+                            key={idx}
+                            onClick={
+                              setting.text === "Username"
+                                ? null
+                                : handleCloseUserMenu
+                            }
+                            sx={{
+                              "&:hover": {
+                                backgroundColor:
+                                  setting.text === "Username"
+                                    ? "transparent"
+                                    : "",
+                              },
+                            }}
+                            disableRipple={setting.text === "Username"}>
+                            {setting.text === "Username" ? (
+                              <Box>
+                                <Typography textAlign="center">
+                                  {user.displayName}
+                                </Typography>
+                                <hr className="h-[1px] w-[120px] bg-black" />{" "}
+                              </Box>
+                            ) : setting.text === "Logout" ? (
+                              <Typography
+                                textAlign="center"
+                                onClick={handleLogout}>
                                 {setting.text}
                               </Typography>
-                            </Link>
-                          )}
-                        </MenuItem>
-                      ))}
-                    </Menu>
-                  </Box>
-                </Toolbar>
-              ) : (
-                <Button variant="contained" sx={{ ml: 3 }}>
-                  <Link to="/login">
-                    <Typography
-                      color="primary"
-                      sx={{
-                        fontSize: "14px",
-                        textTransform: "capitalize",
-                        color: "white",
-                      }}>
-                      Login
-                    </Typography>
-                  </Link>
-                </Button>
-              )}
+                            ) : (
+                              <Link to={setting.to}>
+                                <Typography textAlign="center">
+                                  {setting.text}
+                                </Typography>
+                              </Link>
+                            )}
+                          </MenuItem>
+                        ))}
+                      </Menu>
+                    </Box>
+                  </Toolbar>
+                ) : (
+                  <Button variant="contained" sx={{ ml: 3 }}>
+                    <Link to="/login">
+                      <Typography
+                        color="primary"
+                        sx={{
+                          fontSize: "14px",
+                          textTransform: "capitalize",
+                          color: "white",
+                        }}>
+                        Login
+                      </Typography>
+                    </Link>
+                  </Button>
+                )}
+              </Box>
             </Box>
-          </Box>
-        </Toolbar>
-      </AppBar>
-      <nav>
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}>
-          {drawer}
-        </Drawer>
-      </nav>
-      <hr className="h-[1px] w-full mt-16 bg-black" />
-
-      {/* <Box component="main" sx={{ p: 3 }}>
-        <Toolbar />
-        <Typography>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
-          unde fugit veniam eius, perspiciatis sunt? Corporis qui ducimus
-          quibusdam, aliquam dolore excepturi quae. Distinctio enim at eligendi
-          perferendis in cum quibusdam sed quae, accusantium et aperiam? Quod
-          itaque exercitationem, at ab sequi qui modi delectus quia corrupti
-          alias distinctio nostrum. Minima ex dolor modi inventore sapiente
-        </Typography>
-      </Box> */}
-    </Box>
+          </Toolbar>
+        </AppBar>
+        <nav>
+          <Drawer
+            container={container}
+            variant="temporary"
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            ModalProps={{
+              keepMounted: true, // Better open performance on mobile.
+            }}
+            sx={{
+              display: { xs: "block", sm: "none" },
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: drawerWidth,
+              },
+            }}>
+            {drawer}
+          </Drawer>
+        </nav>
+        <hr className="h-[1px] w-full mt-20 bg-black" />
+      </Box>
+    </div>
   );
 }
 

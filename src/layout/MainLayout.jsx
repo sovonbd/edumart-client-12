@@ -1,12 +1,14 @@
 import { Outlet, useLocation } from "react-router-dom";
 import DrawerAppBar from "../pages/Home/Navbar/DrawerAppBar";
 import Footer from "../components/Footer/Footer";
+import ReturnPortfolio from "../components/ReturnPortfolio/ReturnPortfolio";
 
 const MainLayout = () => {
   const location = useLocation();
   // console.log(location);
   return (
-    <div>
+    <div className="relative">
+      <ReturnPortfolio />
       {location.pathname !== "/login" &&
       location.pathname !== "/register" &&
       !location.pathname.startsWith("/payment/") ? (
