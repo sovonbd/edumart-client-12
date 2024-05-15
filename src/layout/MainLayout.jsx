@@ -8,11 +8,11 @@ const MainLayout = () => {
   // console.log(location);
   return (
     <div className="relative">
-      <ReturnPortfolio />
       {location.pathname !== "/login" &&
       location.pathname !== "/register" &&
       !location.pathname.startsWith("/payment/") ? (
         <div>
+          <ReturnPortfolio />
           <DrawerAppBar></DrawerAppBar>
           <Outlet></Outlet>
           <Footer></Footer>

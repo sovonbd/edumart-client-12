@@ -2,7 +2,6 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
@@ -17,7 +16,6 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import { Avatar, Menu, MenuItem, Tooltip } from "@mui/material";
 import useSwal from "../../../hooks/useSwal";
-import ReturnPortfolio from "../../../components/ReturnPortfolio/ReturnPortfolio";
 
 const drawerWidth = 240;
 const navItems = [
